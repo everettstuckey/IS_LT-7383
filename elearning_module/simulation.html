@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State Change Simulation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>State Change Simulation</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="states.html">States of Matter</a></li>
+			<li><a href="liquid.html">Liquid</a></li>
+			<li><a href="solid.html">Solid</a></li>
+			<li><a href="gas.html">Gas</a></li>
+			<li><a href="plasma.html">Plasma</a></li>
+            <li><a href="simulation.html">Simulation</a></li>
+			<li><a href="knowledge_check.html">Knowledge Check</a></li>
+			<li><a href="review.html">Reviewk</a></li>
+			
+        </ul>
+    </nav>
+    <main>
+        <section>
+            <h2>Interactive Simulation</h2>
+            <p>Click the buttons to see how water changes state with temperature:</p>
+            <button onclick="changeState('freeze')">Lower Temperature to 32F</button>
+            <button onclick="changeState('room')">Room Temp (78F)</button>
+            <button onclick="changeState('boil')">Raise Temperature to 212F</button>
+            <img id="waterState" src="assets/water.jpg" alt="State of Water">
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 States of Matter E-learning Module</p>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>
+    
