@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python & Excel Data Analysis Final Exam</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .scrollable-cell {
+            width: 100%; /* Adjust width as needed */
+            height: 800px; /* Adjust height as needed */
+            overflow: auto;
+            border: 0px solid #ccc;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        .container {
+            width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        h1, h2, h3, h4 {
+            color: #333;
+        }
+        p {
+            margin: 1em 0;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            margin: 0.5em 0;
+        }
+        a {
+            color: #333;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .image-container {
+            text-align: center;
+            margin: 2em 0;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+        }
+        .collapsible {
+            cursor: pointer;
+            padding: 10px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            font-size: 1.25rem;
+        }
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f1f1f1;
+        }
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            margin: 0;
+            table-layout: fixed;
+            border-spacing: 0;
+            border-collapse: collapse;
+        }
+        td {
+            vertical-align: top;
+            padding: 0;
+            margin: 0;
+        }
+        .column-left,
+        .column-right {
+            width: 20%;
+            padding: 0;
+            margin: 0;
+        }
+        .column-center {
+            width: 60%;
+            padding: 20px;
+            background-color: #fff;
+        }
+        .full-height {
+            height: calc(100vh - 64px);
+        }
+        header, footer {
+            width: 100%;
+            box-sizing: border-box;
+        }
+        header img, footer img {
+            width: 100%;
+            height: auto;
+        }
+        .stats {
+            margin: 20px 0;
+            font-size: 1rem;
+        }
+        .feedback {
+            font-size: 1.2em;
+            margin-top: 1em;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <header class="bg-blue-600 text-white py-4">
+        <div class="container mx-auto">
+            <h1 class="text-2xl text-white font-bold">Python & Excel Data Analysis Final Exam</h1>
+        </div>
+    </header>
+    <table>
+        <tr>
+            <td class="column-left full-height" style="background-image: url('image005.jpg'); background-size: cover; background-position: top;">
+            </td>
+            <td class="column-center">
+                <!-- Main Content -->
+                <main class="container mx-auto py-8">
+                    <div class="scrollable-cell">
+                        <h2>Test Your Understanding</h2>
+                        <p>You are about to attempt a final quiz to test your knowledge. A passing score of 100% is required. You can take the quiz multiple times. Good luck!</p>
+
+                        <div id="quiz"></div>
+
+                        <script>
+                            const questions = [
+                                {
+                                    question: "What is the correct code to install the `yfinance` library in Google Colab?",
+                                    options: [
+                                        "install yfinance!",
+                                        "pip install yfinance",
+                                        "!pip install yfinance",
+                                        "!pip install yf"
+                                    ],
+                                    correct: 2,
+                                    feedback: "The correct code is !pip install yfinance. The exclamation mark is required in Google Colab."
+                                },
+                                {
+                                    question: "Which function is used to import stock prices in Google Sheets?",
+                                    options: [
+                                        "=GOOGLEFINANCE()",
+                                        "=IMPORTDATA()",
+                                        "=IMPORTXML()",
+                                        "=STOCKHISTORY()"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The correct function is =GOOGLEFINANCE(). This function imports stock prices in Google Sheets."
+                                },
+                                {
+                                    question: "What Python library is commonly used for data visualization?",
+                                    options: [
+                                        "pandas",
+                                        "numpy",
+                                        "matplotlib",
+                                        "scipy"
+                                    ],
+                                    correct: 2,
+                                    feedback: "The correct answer is matplotlib. Pandas is for data manipulation, numpy is for numerical computations, and scipy is for scientific computing."
+                                },
+                                {
+                                    question: "What is the command to install a Python library using pip?",
+                                    options: [
+                                        "install library_name",
+                                        "pip install library_name",
+                                        "!install library_name",
+                                        "library_name install"
+                                    ],
+                                    correct: 1,
+                                    feedback: "The correct command is pip install library_name. The other options are incorrect command syntax."
+                                },
+                                {
+                                    question: "How do you create a new Google Sheet?",
+                                    options: [
+                                        "File > New > Google Sheets",
+                                        "Insert > New Sheet",
+                                        "Sheets > Create New",
+                                        "Data > New Sheet"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The correct path is File > New > Google Sheets. The other options are incorrect menu paths."
+                                },
+                                {
+                                    question: "Which Python function is used to download stock data using `yfinance`?",
+                                    options: [
+                                        "yf.download()",
+                                        "yf.get_data()",
+                                        "yf.fetch()",
+                                        "yf.retrieve()"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The correct function is yf.download(). The other functions do not exist in the yfinance library."
+                                },
+                                {
+                                    question: "Which function retrieves the opening price of a stock in Google Sheets?",
+                                    options: [
+                                        "=GOOGLEFINANCE(\"GOOG\", \"priceopen\")",
+                                        "=GOOGLEFINANCE(\"GOOG\", \"openprice\")",
+                                        "=GOOGLEFINANCE(\"GOOG\", \"priceclose\")",
+                                        "=GOOGLEFINANCE(\"GOOG\", \"price\")"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The correct function is =GOOGLEFINANCE(\"GOOG\", \"priceopen\"). The other options are incorrect attribute names."
+                                },
+                                {
+                                    question: "Which formula would you use to get the average trading volume of a stock using GOOGLEFINANCE?",
+                                    options: [
+                                        "=GOOGLEFINANCE(\"AAPL\", \"volumeavg\")",
+                                        "=GOOGLEFINANCE(\"AAPL\", \"volume\")",
+                                        "=GOOGLEFINANCE(\"AAPL\", \"marketcap\")",
+                                        "=GOOGLEFINANCE(\"AAPL\", \"avgvol\")"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The correct formula is =GOOGLEFINANCE(\"AAPL\", \"volumeavg\"). The other options are incorrect attribute names."
+                                },
+                                {
+                                    question: "How can you import a library in Python?",
+                                    options: [
+                                        "import library_name",
+                                        "include library_name",
+                                        "require library_name",
+                                        "load library_name"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The correct command is import library_name. The other commands are incorrect for importing libraries in Python."
+                                },
+                                {
+                                    question: "Which function would you use to create a line graph in Google Sheets?",
+                                    options: [
+                                        "Insert > Chart > Line chart",
+                                        "Data > Chart > Line chart",
+                                        "Tools > Chart > Line chart",
+                                        "Format > Chart > Line chart"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The correct path is Insert > Chart > Line chart. The other options are incorrect menu paths."
+                                },
+                                {
+                                    question: "What attribute should you use to get the closing price of a stock using GOOGLEFINANCE?",
+                                    options: [
+                                        "price",
+                                        "priceclose",
+                                        "close",
+                                        "priceclose"
+                                    ],
+                                    correct: 2,
+                                    feedback: "The correct attribute is 'close'. The other options are incorrect attribute names."
+                                },
+                                {
+                                    question: "Which of the following is the correct formula to calculate the slope in Google Sheets?",
+                                    options: [
+                                        "=SLOPE(y-values, x-values)",
+                                        "=SLOPE(x-values, y-values)",
+                                        "=LINEAR(y-values, x-values)",
+                                        "=LINEAR(x-values, y-values)"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The correct formula is =SLOPE(y-values, x-values). The other options are incorrect."
+                                },
+                                {
+                                    question: "How do you install a library in a Jupyter Notebook?",
+                                    options: [
+                                        "install library_name",
+                                        "!pip install library_name",
+                                        "pip install library_name",
+                                        "%pip install library_name"
+                                    ],
+                                    correct: 1,
+                                    feedback: "The correct command is !pip install library_name. The exclamation mark is required in Jupyter Notebook."
+                                },
+                                {
+                                    question: "Which command is used to install Matplotlib in Google Colab?",
+                                    options: [
+                                        "!pip install matplotlib",
+                                        "!install matplotlib",
+                                        "pip install matplotlib",
+                                        "install matplotlib"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The correct command is !pip install matplotlib. The exclamation mark is required in Google Colab."
+                                },
+                                {
+                                    question: "What is the formula to calculate the average of a range in Google Sheets?",
+                                    options: [
+                                        "=AVG(range)",
+                                        "=AVERAGE(range)",
+                                        "=MEAN(range)",
+                                        "=MEDIAN(range)"
+                                    ],
+                                    correct: 1,
+                                    feedback: "The correct formula is =AVERAGE(range). The other options are incorrect."
+                                },
+                                {
+                                    question: "What does the 'y' in yfinance stand for?",
+                                    options: [
+                                        "Yahoo",
+                                        "Yearly",
+                                        "Yield",
+                                        "Yesterday"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The 'y' in yfinance stands for Yahoo, as the library is used to fetch stock data from Yahoo Finance."
+                                },
+                                {
+                                    question: "Which function in Pandas is used to read a CSV file?",
+                                    options: [
+                                        "pandas.read_csv()",
+                                        "pd.read_csv()",
+                                        "pandas.load_csv()",
+                                        "pd.load_csv()"
+                                    ],
+                                    correct: 1,
+                                    feedback: "The correct function is pd.read_csv(). The other options are incorrect."
+                                },
+                                {
+                                    question: "What does the command `df.head()` do in Pandas?",
+                                    options: [
+                                        "Displays the first 5 rows of the DataFrame",
+                                        "Displays the last 5 rows of the DataFrame",
+                                        "Displays the first 10 rows of the DataFrame",
+                                        "Displays the DataFrame structure"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The command `df.head()` displays the first 5 rows of the DataFrame."
+                                },
+                                {
+                                    question: "Which function in Matplotlib is used to create a line plot?",
+                                    options: [
+                                        "plot()",
+                                        "line()",
+                                        "scatter()",
+                                        "bar()"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The correct function is plot(). The other options are incorrect."
+                                },
+                                {
+                                    question: "What does the command `df.describe()` do in Pandas?",
+                                    options: [
+                                        "Provides descriptive statistics of the DataFrame",
+                                        "Displays the DataFrame structure",
+                                        "Shows the first 5 rows of the DataFrame",
+                                        "Shows the last 5 rows of the DataFrame"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The command `df.describe()` provides descriptive statistics of the DataFrame."
+                                },
+                                {
+                                    question: "How do you create a new sheet in Google Sheets?",
+                                    options: [
+                                        "Sheet > New Sheet",
+                                        "Insert > Sheet",
+                                        "File > New > Sheet",
+                                        "Data > New Sheet"
+                                    ],
+                                    correct: 1,
+                                    feedback: "The correct path is Insert > Sheet. The other options are incorrect."
+                                },
+                                {
+                                    question: "Which command is used to install Pandas in Google Colab?",
+                                    options: [
+                                        "!pip install pandas",
+                                        "!install pandas",
+                                        "pip install pandas",
+                                        "install pandas"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The correct command is !pip install pandas. The exclamation mark is required in Google Colab."
+                                },
+                                {
+                                    question: "What does the command `df.tail()` do in Pandas?",
+                                    options: [
+                                        "Displays the first 5 rows of the DataFrame",
+                                        "Displays the last 5 rows of the DataFrame",
+                                        "Displays the first 10 rows of the DataFrame",
+                                        "Displays the DataFrame structure"
+                                    ],
+                                    correct: 1,
+                                    feedback: "The command `df.tail()` displays the last 5 rows of the DataFrame."
+                                },
+                                {
+                                    question: "What is the correct formula to calculate the sum of a range in Google Sheets?",
+                                    options: [
+                                        "=SUM(range)",
+                                        "=ADD(range)",
+                                        "=TOTAL(range)",
+                                        "=COUNT(range)"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The correct formula is =SUM(range). The other options are incorrect."
+                                },
+                                {
+                                    question: "What does the `plt.show()` command do in Matplotlib?",
+                                    options: [
+                                        "Displays the plot",
+                                        "Saves the plot",
+                                        "Closes the plot",
+                                        "Creates a new plot"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The `plt.show()` command displays the plot."
+                                },
+                                {
+                                    question: "Which function in Google Sheets returns the number of cells that meet a criterion?",
+                                    options: [
+                                        "=COUNTIF(range, criterion)",
+                                        "=SUMIF(range, criterion)",
+                                        "=AVERAGEIF(range, criterion)",
+                                        "=IF(range, criterion)"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The correct function is =COUNTIF(range, criterion). The other options are incorrect."
+                                },
+                                {
+                                    question: "Which command is used to install SciPy in Google Colab?",
+                                    options: [
+                                        "!pip install scipy",
+                                        "!install scipy",
+                                        "pip install scipy",
+                                        "install scipy"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The correct command is !pip install scipy. The exclamation mark is required in Google Colab."
+                                },
+                                {
+                                    question: "What does the command `df.info()` do in Pandas?",
+                                    options: [
+                                        "Provides a summary of the DataFrame",
+                                        "Displays the first 5 rows of the DataFrame",
+                                        "Displays the last 5 rows of the DataFrame",
+                                        "Provides descriptive statistics of the DataFrame"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The command `df.info()` provides a summary of the DataFrame."
+                                },
+                                {
+                                    question: "How do you create a bar chart in Matplotlib?",
+                                    options: [
+                                        "bar()",
+                                        "plot()",
+                                        "scatter()",
+                                        "line()"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The correct function is bar(). The other options are incorrect."
+                                },
+                                {
+                                    question: "Which command is used to install NumPy in Google Colab?",
+                                    options: [
+                                        "!pip install numpy",
+                                        "!install numpy",
+                                        "pip install numpy",
+                                        "install numpy"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The correct command is !pip install numpy. The exclamation mark is required in Google Colab."
+                                },
+                                {
+                                    question: "What does the `plt.savefig()` command do in Matplotlib?",
+                                    options: [
+                                        "Saves the plot to a file",
+                                        "Displays the plot",
+                                        "Closes the plot",
+                                        "Creates a new plot"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The `plt.savefig()` command saves the plot to a file."
+                                },
+                                {
+                                    question: "What does the `df.sort_values()` function do in Pandas?",
+                                    options: [
+                                        "Sorts the DataFrame by the specified column(s)",
+                                        "Provides descriptive statistics of the DataFrame",
+                                        "Displays the first 5 rows of the DataFrame",
+                                        "Displays the last 5 rows of the DataFrame"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The `df.sort_values()` function sorts the DataFrame by the specified column(s)."
+                                },
+                                {
+                                    question: "What is the correct formula to calculate the maximum value in a range in Google Sheets?",
+                                    options: [
+                                        "=MAX(range)",
+                                        "=MAXIMUM(range)",
+                                        "=LARGEST(range)",
+                                        "=HIGH(range)"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The correct formula is =MAX(range). The other options are incorrect."
+                                },
+                                {
+                                    question: "How do you create a scatter plot in Matplotlib?",
+                                    options: [
+                                        "scatter()",
+                                        "plot()",
+                                        "bar()",
+                                        "line()"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The correct function is scatter(). The other options are incorrect."
+                                },
+                                {
+                                    question: "What does the `df.drop()` function do in Pandas?",
+                                    options: [
+                                        "Removes specified labels from rows or columns",
+                                        "Displays the first 5 rows of the DataFrame",
+                                        "Displays the last 5 rows of the DataFrame",
+                                        "Provides descriptive statistics of the DataFrame"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The `df.drop()` function removes specified labels from rows or columns."
+                                },
+                                {
+                                    question: "Which function in Google Sheets returns the average of a range of numbers, excluding text and logical values?",
+                                    options: [
+                                        "=AVERAGE(range)",
+                                        "=AVERAGEA(range)",
+                                        "=MEAN(range)",
+                                        "=MEDIAN(range)"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The correct function is =AVERAGE(range). The other options are incorrect."
+                                },
+                                {
+                                    question: "Which command is used to install seaborn in Google Colab?",
+                                    options: [
+                                        "!pip install seaborn",
+                                        "!install seaborn",
+                                        "pip install seaborn",
+                                        "install seaborn"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The correct command is !pip install seaborn. The exclamation mark is required in Google Colab."
+                                },
+                                {
+                                    question: "What does the `df.groupby()` function do in Pandas?",
+                                    options: [
+                                        "Groups the DataFrame using a mapper or by a Series of columns",
+                                        "Provides descriptive statistics of the DataFrame",
+                                        "Displays the first 5 rows of the DataFrame",
+                                        "Displays the last 5 rows of the DataFrame"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The `df.groupby()` function groups the DataFrame using a mapper or by a Series of columns."
+                                },
+                                {
+                                    question: "What is the correct formula to calculate the median of a range in Google Sheets?",
+                                    options: [
+                                        "=MEDIAN(range)",
+                                        "=MEAN(range)",
+                                        "=AVERAGE(range)",
+                                        "=MIDDLE(range)"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The correct formula is =MEDIAN(range). The other options are incorrect."
+                                },
+                                {
+                                    question: "What does the `plt.hist()` function do in Matplotlib?",
+                                    options: [
+                                        "Creates a histogram",
+                                        "Creates a line plot",
+                                        "Creates a bar chart",
+                                        "Creates a scatter plot"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The `plt.hist()` function creates a histogram."
+                                },
+                                {
+                                    question: "Which command is used to install statsmodels in Google Colab?",
+                                    options: [
+                                        "!pip install statsmodels",
+                                        "!install statsmodels",
+                                        "pip install statsmodels",
+                                        "install statsmodels"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The correct command is !pip install statsmodels. The exclamation mark is required in Google Colab."
+                                },
+                                {
+                                    question: "What does the `df.corr()` function do in Pandas?",
+                                    options: [
+                                        "Calculates the correlation matrix of the DataFrame",
+                                        "Displays the first 5 rows of the DataFrame",
+                                        "Displays the last 5 rows of the DataFrame",
+                                        "Provides descriptive statistics of the DataFrame"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The `df.corr()` function calculates the correlation matrix of the DataFrame."
+                                },
+                                {
+                                    question: "What is the correct formula to calculate the standard deviation of a range in Google Sheets?",
+                                    options: [
+                                        "=STDEV(range)",
+                                        "=STDDEV(range)",
+                                        "=STDEVIATION(range)",
+                                        "=DEVIATION(range)"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The correct formula is =STDEV(range). The other options are incorrect."
+                                },
+                                {
+                                    question: "What does the `df.apply()` function do in Pandas?",
+                                    options: [
+                                        "Applies a function along an axis of the DataFrame",
+                                        "Displays the first 5 rows of the DataFrame",
+                                        "Displays the last 5 rows of the DataFrame",
+                                        "Provides descriptive statistics of the DataFrame"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The `df.apply()` function applies a function along an axis of the DataFrame."
+                                },
+                                {
+                                    question: "Which function in Google Sheets returns the sum of the products of corresponding ranges?",
+                                    options: [
+                                        "=SUMPRODUCT(range1, range2)",
+                                        "=PRODUCTSUM(range1, range2)",
+                                        "=SUM(range1, range2)",
+                                        "=PRODUCT(range1, range2)"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The correct function is =SUMPRODUCT(range1, range2). The other options are incorrect."
+                                },
+                                {
+                                    question: "What does the `df.pivot_table()` function do in Pandas?",
+                                    options: [
+                                        "Creates a spreadsheet-style pivot table as a DataFrame",
+                                        "Displays the first 5 rows of the DataFrame",
+                                        "Displays the last 5 rows of the DataFrame",
+                                        "Provides descriptive statistics of the DataFrame"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The `df.pivot_table()` function creates a spreadsheet-style pivot table as a DataFrame."
+                                },
+                                {
+                                    question: "What is the correct formula to calculate the variance of a range in Google Sheets?",
+                                    options: [
+                                        "=VAR(range)",
+                                        "=VARIANCE(range)",
+                                        "=VARI(range)",
+                                        "=VARN(range)"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The correct formula is =VAR(range). The other options are incorrect."
+                                },
+                                {
+                                    question: "What does the `df.fillna()` function do in Pandas?",
+                                    options: [
+                                        "Fills NA/NaN values using the specified method",
+                                        "Displays the first 5 rows of the DataFrame",
+                                        "Displays the last 5 rows of the DataFrame",
+                                        "Provides descriptive statistics of the DataFrame"
+                                    ],
+                                    correct: 0,
+                                    feedback: "The `df.fillna()` function fills NA/NaN values using the specified method."
+                                },
+                            ];
+
+                            function shuffle(array) {
+                                for (let i = array.length - 1; i > 0; i--) {
+                                    const j = Math.floor(Math.random() * (i + 1));
+                                    [array[i], array[j]] = [array[j], array[i]];
+                                }
+                            }
+
+                            function loadQuiz() {
+                                shuffle(questions);
+                                const quizContainer = document.getElementById('quiz');
+                                quizContainer.innerHTML = '';
+                                for (let i = 0; i < 10; i++) {
+                                    const q = questions[i];
+                                    const questionElem = document.createElement('div');
+                                    questionElem.classList.add('question');
+                                    questionElem.innerHTML = `
+                                        <h4>${i + 1}. ${q.question}</h4>
+                                        ${q.options.map((option, index) => `
+                                            <input type="radio" name="q${i}" value="${index}"> ${option}<br>
+                                        `).join('')}
+                                        <div id="feedback${i}" class="feedback"></div>
+                                    `;
+                                    quizContainer.appendChild(questionElem);
+                                }
+                            }
+
+                            function validateQuiz() {
+                                let allCorrect = true;
+                                for (let i = 0; i < 10; i++) {
+                                    const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                                    const feedbackElem = document.getElementById(`feedback${i}`);
+                                    if (selected && parseInt(selected.value) === questions[i].correct) {
+                                        feedbackElem.textContent = 'Correct!';
+                                        feedbackElem.className = 'feedback correct';
+                                    } else {
+                                        feedbackElem.textContent = `Incorrect. ${questions[i].feedback}`;
+                                        feedbackElem.className = 'feedback incorrect';
+                                        allCorrect = false;
+                                    }
+                                }
+                                if (allCorrect) {
+                                    window.location.href = 'certificate_image.png';
+                                }
+                            }
+
+                            document.addEventListener('DOMContentLoaded', loadQuiz);
+                        </script>
+
+                        <button class="button mt-4" onclick="validateQuiz()">Submit</button>
+                        <button class="button" onclick="location.reload()">Retake</button>
+                    </div>
+                </main>
+            </td>
+            <td class="column-right full-height" style="background-image: url('image006.jpg'); background-size: cover; background-position: top;">
+            </td>
+        </tr>
+    </table>
+
+    <footer class="bg-blue-600 text-white py-4">
+        <div class="container mx-auto text-center">
+            <a class="button" href="part2_part5.html">Back</a>
+        </div>
+    </footer>
+</body>
+</html>

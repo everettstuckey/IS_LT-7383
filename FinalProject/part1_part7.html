@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOOGLEFINANCE Formula Test</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        h1, h2, h3, h4 {
+            color: #333;
+        }
+        p {
+            margin: 1em 0;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            margin: 0.5em 0;
+        }
+        a {
+            color: #333;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .image-container {
+            text-align: center;
+            margin: 2em 0;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+        }
+        .collapsible {
+            cursor: pointer;
+            padding: 10px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            font-size: 1.25rem;
+        }
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f1f1f1;
+        }
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            margin: 0;
+            table-layout: fixed;
+            border-spacing: 0;
+            border-collapse: collapse;
+        }
+        td {
+            vertical-align: top;
+            padding: 0;
+            margin: 0;
+        }
+        .column-left,
+        .column-right {
+            width: 20%;
+            padding: 0;
+            margin: 0;
+        }
+        .column-center {
+            width: 60%;
+            padding: 20px;
+            background-color: #fff;
+        }
+        .full-height {
+            height: calc(100vh - 64px);
+        }
+        header, footer {
+            width: 100%;
+            box-sizing: border-box;
+        }
+        header img, footer img {
+            width: 100%;
+            height: auto;
+        }
+        .stats {
+            margin: 20px 0;
+            font-size: 1rem;
+        }
+        .feedback {
+            font-size: 1.2em;
+            margin-top: 1em;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <header class="bg-blue-600 text-white py-4">
+        <div class="container mx-auto">
+            <h1 class="text-2xl text-white font-bold">GOOGLEFINANCE Formula Test</h1>
+        </div>
+    </header>
+
+    <table>
+        <tr>
+            <td class="column-left full-height" style="background-image: url('image005.jpg'); background-size: cover; background-position: top;">
+            </td>
+            <td class="column-center">
+                <!-- Main Content -->
+                <main class="container mx-auto py-8">
+                    <h2>Test Your Understanding</h2>
+                    <p>You are about to attempt a final quiz to test your knowledge. A passing score of 100% is required. You can take the quiz multiple times. Good luck!</p>
+                    
+                    <!-- Question 1 -->
+                    <h4>1. What is the correct GOOGLEFINANCE formula to retrieve Google's price history from January 1, 2023, to December 31, 2023?</h4>
+                    <p>(Select the correct option)</p>
+                    <input type="radio" name="q1" value="a"> =GOOGLEFINANCE("GOOG", "price", "2023-01-01", "2023-12-31")<br>
+                    <input type="radio" name="q1" value="b"> =GOOGLEFINANCE("GOOG", "close", "2023-01-01", "2023-12-31")<br>
+                    <input type="radio" name="q1" value="c"> =GOOGLEFINANCE("GOOGL", "price", "2023-01-01", "2023-12-31")<br>
+                    <div id="feedback1" class="feedback"></div>
+                    
+                    <!-- Question 2 -->
+                    <h4>2. Which of the following formulas correctly represents the GOOGLEFINANCE formula for Apple's price history for the last year?</h4>
+                    <input type="radio" name="q2" value="a"> =GOOGLEFINANCE("AAPL", "price", TODAY()-365, TODAY())<br>
+                    <input type="radio" name="q2" value="b"> =GOOGLEFINANCE("AAPL", "price", "2023-01-01", TODAY())<br>
+                    <input type="radio" name="q2" value="c"> =GOOGLEFINANCE("AAPL", "close", TODAY()-365, TODAY())<br>
+                    <div id="feedback2" class="feedback"></div>
+                    
+                    <!-- Question 3 -->
+                    <h4>3. Fill in the blank: The GOOGLEFINANCE formula to retrieve Microsoft's daily stock prices for the last 10 years is <input type="text" id="q3" class="border p-2 w-full" placeholder="Enter formula here"></h4>
+                    <div id="feedback3" class="feedback"></div>
+                    
+                    <!-- Question 4 -->
+                    <h4>4. What attribute should you use to get the opening price of a stock using GOOGLEFINANCE?</h4>
+                    <input type="radio" name="q4" value="a"> "price"<br>
+                    <input type="radio" name="q4" value="b"> "priceopen"<br>
+                    <input type="radio" name="q4" value="c"> "close"<br>
+                    <div id="feedback4" class="feedback"></div>
+                    
+                    <!-- Question 5 -->
+                    <h4>5. Which formula would you use to get the average trading volume of a stock using GOOGLEFINANCE?</h4>
+                    <input type="radio" name="q5" value="a"> =GOOGLEFINANCE("AAPL", "volumeavg")<br>
+                    <input type="radio" name="q5" value="b"> =GOOGLEFINANCE("AAPL", "volume")<br>
+                    <input type="radio" name="q5" value="c"> =GOOGLEFINANCE("AAPL", "marketcap")<br>
+                    <div id="feedback5" class="feedback"></div>
+                    
+                    <button class="button mt-4" onclick="validateQuiz()">Submit</button>
+                    <a id="nextButton" class="button mt-4 hidden" href="part1_part8.html">Next</a>
+                </main>
+            </td>
+            <td class="column-right full-height" style="background-image: url('image006.jpg'); background-size: cover; background-position: top;">
+            </td>
+        </tr>
+    </table>
+
+    <footer class="bg-blue-600 text-white py-4">
+        <div class="container mx-auto text-center">
+            <a class="button" href="part1_part6.html">Back</a>
+        </div>
+    </footer>
+
+    <script>
+        function validateQuiz() {
+            const q1 = document.querySelector('input[name="q1"]:checked');
+            const q2 = document.querySelector('input[name="q2"]:checked');
+            const q3 = document.getElementById('q3').value.trim();
+            const q4 = document.querySelector('input[name="q4"]:checked');
+            const q5 = document.querySelector('input[name="q5"]:checked');
+            
+            const feedback1 = document.getElementById('feedback1');
+            const feedback2 = document.getElementById('feedback2');
+            const feedback3 = document.getElementById('feedback3');
+            const feedback4 = document.getElementById('feedback4');
+            const feedback5 = document.getElementById('feedback5');
+            
+            let allCorrect = true;
+            
+            if (q1 && q1.value === 'a') {
+                feedback1.textContent = 'Correct! Your formula is in the correct format.';
+                feedback1.className = 'feedback correct';
+            } else {
+                feedback1.textContent = 'Incorrect. The correct formula is =GOOGLEFINANCE("GOOG", "price", "2023-01-01", "2023-12-31"). "GOOG" is the ticker symbol for Google and "price" retrieves the historical price.';
+                feedback1.className = 'feedback incorrect';
+                allCorrect = false;
+            }
+            
+            if (q2 && q2.value === 'b') {
+                feedback2.textContent = 'Correct! The formula is in the correct format.';
+                feedback2.className = 'feedback correct';
+            } else {
+                feedback2.textContent = 'Incorrect. The correct formula is =GOOGLEFINANCE("AAPL", "price", "2023-01-01", TODAY()). This retrieves Apple\'s price history from January 1, 2023, to today.';
+                feedback2.className = 'feedback incorrect';
+                allCorrect = false;
+            }
+            
+            const correctQ3Answers = [
+                '=GOOGLEFINANCE("MSFT", "price", TODAY()-365*10, TODAY())',
+                '=GOOGLEFINANCE("MSFT", "price", today()-365*10, today())',
+                '=GOOGLEFINANCE("MSFT", "price", TODAY() - 365*10, TODAY())',
+                '=GOOGLEFINANCE("MSFT", "price", today() - 365*10, today())',
+                '=GOOGLEFINANCE("MSFT", "price", TODAY() - 3650, TODAY())',
+                '=GOOGLEFINANCE("MSFT", "price", today() - 3650, today())'
+            ];
+            
+            if (correctQ3Answers.includes(q3)) {
+                feedback3.textContent = 'Correct! Your formula is in the correct format.';
+                feedback3.className = 'feedback correct';
+            } else {
+                feedback3.textContent = 'Incorrect. The correct formula is =GOOGLEFINANCE("MSFT", "price", TODAY()-365*10, TODAY()). This retrieves Microsoft\'s price history for the last 10 years.';
+                feedback3.className = 'feedback incorrect';
+                allCorrect = false;
+            }
+            
+            if (q4 && q4.value === 'b') {
+                feedback4.textContent = 'Correct! The attribute "priceopen" is used for the opening price.';
+                feedback4.className = 'feedback correct';
+            } else {
+                feedback4.textContent = 'Incorrect. The correct attribute is "priceopen" which retrieves the opening price of the stock.';
+                feedback4.className = 'feedback incorrect';
+                allCorrect = false;
+            }
+            
+            if (q5 && q5.value === 'a') {
+                feedback5.textContent = 'Correct! The attribute "volumeavg" is used for the average trading volume.';
+                feedback5.className = 'feedback correct';
+            } else {
+                feedback5.textContent = 'Incorrect. The correct attribute is "volumeavg" which retrieves the average trading volume of the stock.';
+                feedback5.className = 'feedback incorrect';
+                allCorrect = false;
+            }
+            
+            if (allCorrect) {
+                document.getElementById('nextButton').classList.remove('hidden');
+            } else {
+                document.getElementById('nextButton').classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
