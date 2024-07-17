@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Adventure</title>
+    <style>
+        @font-face {
+            font-family: '8bit';
+            src: url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        }
+        body {
+            background-color: #4C51BF;  /* Updated background color */
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: '8bit', sans-serif;
+            text-align: center;
+        }
+        .hidden {
+            display: none;
+        }
+        #title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        #progress-bar-container {
+            width: 80%;
+            background-color: #555;
+            margin: 20px 0;
+        }
+        #progress-bar {
+            width: 0;
+            height: 30px;
+            background-color: #0f0;
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .image-container img {
+            width: 400px;
+            height: auto;
+            margin: 0 10px;
+            cursor: pointer;
+            border: 3px solid white;
+        }
+        #black-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #4C51BF;  /* Updated background color */
+            z-index: 10;
+        }
+        #choose-adventure {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="title">Financial Data Analysis with Python and Google Sheets</div>
+    <div id="progress-bar-container">
+        <div id="progress-bar"></div>
+    </div>
+    <div id="choose-adventure" class="hidden">Choose Your Adventure</div>
+    <div class="image-container">
+        <div id="black-layer"></div>
+        <a href="FinalProject/part2.html"><img src="FinalProject/A_sleek_and_modern_image_representing_the_Python_p.png" alt="Python Image"></a>
+        <a href="FinalProject/part1.html"><img src="FinalProject/A_clean_and_professional_image_representing_Google.png" alt="Google Sheets Image"></a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressBarContainer = document.getElementById('progress-bar-container');
+            const progressBar = document.getElementById('progress-bar');
+            const blackLayer = document.getElementById('black-layer');
+            const chooseAdventure = document.getElementById('choose-adventure');
+
+            setTimeout(() => {
+                progressBarContainer.classList.remove('hidden');
+                let width = 0;
+                const interval = setInterval(() => {
+                    if (width >= 100) {
+                        clearInterval(interval);
+                        progressBarContainer.classList.add('hidden');
+                        blackLayer.classList.add('hidden');
+                        chooseAdventure.classList.remove('hidden');
+                    } else {
+                        width++;
+                        progressBar.style.width = width + '%';
+                    }
+                }, 30);
+            }, 1000); // Show progress bar after 1 second
+        });
+    </script>
+</body>
+</html>
