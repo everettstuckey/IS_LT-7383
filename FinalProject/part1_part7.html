@@ -217,11 +217,11 @@
                 allCorrect = false;
             }
             
-            if (q2 && q2.value === 'b') {
+            if (q2 && q2.value === 'c') {
                 feedback2.textContent = 'Correct! The formula is in the correct format.';
                 feedback2.className = 'feedback correct';
             } else {
-                feedback2.textContent = 'Incorrect. The correct formula is =GOOGLEFINANCE("AAPL", "price", "2023-01-01", TODAY()). This retrieves Apple\'s price history from January 1, 2023, to today.';
+                feedback2.textContent = 'Incorrect. The correct formula is  =GOOGLEFINANCE("AAPL", "close", TODAY()-365, TODAY()). This retrieves Apple\'s price history from January 1, 2023, to today.';
                 feedback2.className = 'feedback incorrect';
                 allCorrect = false;
             }
