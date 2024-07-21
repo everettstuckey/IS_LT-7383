@@ -98,20 +98,20 @@
         td {
             vertical-align: top;
             padding: 0;
-            margin: 0;
+            margin: 0.
         }
 
         .column-left,
         .column-right {
             width: 20%;
             padding: 0;
-            margin: 0;
+            margin: 0.
         }
 
         .column-center {
             width: 60%;
             padding: 20px;
-            background-color: #fff;
+            background-color: #fff.
         }
 
         .full-height {
@@ -120,12 +120,12 @@
 
         header, footer {
             width: 100%;
-            box-sizing: border-box;
+            box-sizing: border-box.
         }
 
         header img, footer img {
             width: 100%;
-            height: auto;
+            height: auto.
         }
 
         .stats {
@@ -148,14 +148,24 @@
             <td class="column-center">
                 <!-- Main Content -->
                 <main class="container mx-auto py-8">
-                    <h4 id="historical-data-single-day">2. Obtain Historical Stock Information for a Single Day</h4>
+				
+
+                    <h2 id="historical-data-single-day">Historical Data</h2><br><br>
+														                    <div class="video-container">
+                        
+                        <video controls width="600">
+                            <source src="HistoricalVideo.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+					<br>
                     <p>Syntax: <strong>GOOGLEFINANCE(ticker, [attribute], [start_date])</strong></p>
                     <p>Google Sheets provides historical data attributes like "open", "close", "high", "low", etc. For example, using the "all" attribute:</p>
                     <div class="image-container">
                         <img alt="Example of historical data using GOOGLEFINANCE function" src="images/googlefinance-example-4.png"/>
                     </div>
-                    <p>This will output a matrix with multiple attributes for the given <strong>start_date</strong>:</p>
-                    <p><strong>=GOOGLEFINANCE("AAPL","all",DATE(2017,2,27))</strong></p>
+                    <p>This will output a matrix with all attributes for the given <strong>start_date</strong>:</p>
+                    <p><strong>=GOOGLEFINANCE("V","all",DATE(2017,2,27))</strong></p>
                 </main>
             </td>
             <td class="column-right full-height" style="background-image: url('image006.jpg'); background-size: cover; background-position: top;">
