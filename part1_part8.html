@@ -132,6 +132,14 @@
             margin: 20px 0;
             font-size: 1rem;
         }
+
+        .hidden {
+            display: none;
+        }
+
+        .visible {
+            display: inline-block;
+        }
     </style>
 </head>
 
@@ -146,18 +154,15 @@
             <td class="column-left full-height" style="background-image: url('image005.jpg'); background-size: cover; background-position: top;">
             </td>
             <td class="column-center">
-                <h2>Introduction to Linear Regression</h2>
-                <p>Linear regression is a statistical method for modeling the relationship between a dependent variable and one or more independent variables. In this tutorial, we will learn how to perform linear regression using Google Sheets.</p>
-                
-                <h2>Steps to Create a Linear Regression in Google Sheets</h2>
-                <ol>
-                    <li><strong>Enter your data:</strong> Start by entering the formula =GOOGLEFINANCE("INDEXCODE:INDEX_NAME", "attribute", "start_date", "end_date", "interval") in two columns to get your data. Use VIX as the independent variable (X) and SPY as the dependent variable (Y).</li>
-                    <li><strong>Create a scatter plot:</strong> Select your data and insert a scatter plot. Go to Insert > Chart, and choose Scatter Chart.</li>
-                    <li><strong>Add a trendline:</strong> Click on the chart, then click on the three vertical dots in the top right corner. Select Edit chart, go to the Customize tab, and under Series, check the Trendline box.</li>
-                    <li><strong>Show equation:</strong> In the Trendline options, check the box for Label and select Use Equation. This will display the linear regression equation on the chart.</li>
-                    <li><strong>Interpret the results:</strong> The equation displayed will be in the form of y = mx + b, where m is the slope and b is the y-intercept.</li>
-                </ol>
-
+                <h2>Introduction to Linear Regression</h2><br>
+  <div class="video-container">
+                        
+                        <video controls width="600">
+                            <source src="LinearRegression.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                <br>
                 <h2>Interactive Graph Instructions</h2>
                 <p>To interact with the graph, follow these steps:</p>
                 <ol>
@@ -166,8 +171,150 @@
                     <li><strong>Analyze Results:</strong> Use the updated regression line to understand the impact of your changes on the linear model.</li>
                 </ol>
 
-                <div id="chart"></div>
-                <div id="stats" class="stats"></div>
+    <svg width="800" height="600"></svg>
+    <div class="stats">
+        <p id="slope"></p>
+        <p id="intercept"></p>
+        <p id="r2"></p>
+    </div>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/simple-statistics@7.7.3/dist/simple-statistics.min.js"></script>
+    <script>
+        const svg = d3.select("svg");
+        const width = +svg.attr("width");
+        const height = +svg.attr("height");
+        const margin = {top: 20, right: 30, bottom: 30, left: 40};
+        const innerWidth = width - margin.left - margin.right;
+        const innerHeight = height - margin.top - margin.bottom;
+
+        const x = d3.scaleLinear().range([0, innerWidth]);
+        const y = d3.scaleLinear().range([innerHeight, 0]);
+
+        const g = svg.append("g")
+            .attr("transform", `translate(${margin.left},${margin.top})`);
+
+        const data = [
+            {x: 100, y: 200},
+            {x: 200, y: 300},
+            {x: 300, y: 250},
+            {x: 400, y: 400},
+            {x: 500, y: 350}
+        ];
+
+        x.domain([0, innerWidth]);
+        y.domain([0, innerHeight]);
+
+        const xAxis = d3.axisBottom(x).ticks(10);
+        const yAxis = d3.axisLeft(y).ticks(10);
+
+        g.append("g")
+            .attr("transform", `translate(0,${innerHeight})`)
+            .call(xAxis);
+
+        g.append("g")
+            .call(yAxis);
+
+        const line = d3.line()
+            .x(d => x(d.x))
+            .y(d => y(d.y));
+
+        const updateLine = () => {
+            const xValues = data.map(d => d.x);
+            const yValues = data.map(d => d.y);
+            const regression = ss.linearRegression(data.map(d => [d.x, d.y]));
+            const regressionLine = ss.linearRegressionLine(regression);
+            const r2 = ss.rSquared(data.map(d => [d.x, d.y]), regressionLine);
+
+            g.selectAll(".regression-line").remove();
+            g.selectAll(".regression-label").remove();
+
+            g.append("line")
+                .attr("class", "regression-line")
+                .attr("x1", x(d3.min(xValues)))
+                .attr("y1", y(regressionLine(d3.min(xValues))))
+                .attr("x2", x(d3.max(xValues)))
+                .attr("y2", y(regressionLine(d3.max(xValues))))
+                .style("stroke", "blue")
+                .style("stroke-width", 2)
+                .style("fill", "none");
+
+            g.append("text")
+                .attr("class", "regression-label")
+                .attr("x", x((d3.min(xValues) + d3.max(xValues)) / 2))
+                .attr("y", y(regressionLine((d3.min(xValues) + d3.max(xValues)) / 2)) - 10)
+                .style("fill", "blue")
+                .text(`R²: ${r2.toFixed(2)}`);
+
+            document.getElementById('slope').textContent = `Slope: ${regression.m.toFixed(2)}`;
+            document.getElementById('intercept').textContent = `Intercept: ${regression.b.toFixed(2)}`;
+            document.getElementById('r2').textContent = `R²: ${r2.toFixed(2)}`;
+
+            g.selectAll(".point").remove();
+            g.selectAll(".point-label").remove();
+
+            g.selectAll(".point")
+                .data(data)
+                .enter().append("circle")
+                .attr("class", "point")
+                .attr("r", 5)
+                .attr("cx", d => x(d.x))
+                .attr("cy", d => y(d.y))
+                .call(drag);
+
+            g.selectAll(".point-label")
+                .data(data)
+                .enter().append("text")
+                .attr("class", "point-label")
+                .attr("x", d => x(d.x) + 5)
+                .attr("y", d => y(d.y) - 5)
+                .text(d => `(${d.x.toFixed(0)}, ${d.y.toFixed(0)})`);
+
+            const nextButton = document.getElementById('next-button');
+            if (r2.toFixed(2) == 0.00) {
+                nextButton.classList.remove('hidden');
+                nextButton.classList.add('visible');
+            } else {
+                nextButton.classList.remove('visible');
+                nextButton.classList.add('hidden');
+            }
+        };
+
+        const drag = d3.drag()
+            .on("start", function(event, d) {
+                d3.select(this).raise().attr("stroke", "black");
+            })
+            .on("drag", function(event, d) {
+                const [newX, newY] = d3.pointer(event, svg.node());
+                d.x = x.invert(newX - margin.left);
+                d.y = y.invert(newY - margin.top);
+                d3.select(this)
+                    .attr("cx", x(d.x))
+                    .attr("cy", y(d.y));
+                updateLine();
+            })
+            .on("end", function(event, d) {
+                d3.select(this).attr("stroke", null);
+            });
+
+        g.selectAll(".point")
+            .data(data)
+            .enter().append("circle")
+            .attr("class", "point")
+            .attr("r", 5)
+            .attr("cx", d => x(d.x))
+            .attr("cy", d => y(d.y))
+            .call(drag);
+
+        g.selectAll(".point-label")
+            .data(data)
+            .enter().append("text")
+            .attr("class", "point-label")
+            .attr("x", d => x(d.x) + 5)
+            .attr("y", d => y(d.y) - 5)
+            .text(d => `(${d.x.toFixed(0)}, ${d.y.toFixed(0)})`);
+
+        updateLine();
+    </script>
             </td>
             <td class="column-right full-height" style="background-image: url('image006.jpg'); background-size: cover; background-position: top;">
             </td>
@@ -177,126 +324,9 @@
     <footer class="bg-blue-600 text-white py-4">
         <div class="container mx-auto text-center">
             <a class="button" href="part1_part7.html">Back</a>
-            <a class="button" href="part2.html">Next</a>
+            <a id="next-button" class="button hidden" href="part2.html">Next</a>
+            <a style="color: white;">Manipulate the data points to generate an R² = 0.00 in order to advance</a>
         </div>
     </footer>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script>
-        const width = 600;
-        const height = 400;
-        const margin = { top: 20, right: 30, bottom: 30, left: 40 };
-
-        const svg = d3.select("#chart")
-            .append("svg")
-            .attr("width", width)
-            .attr("height", height);
-
-        const xScale = d3.scaleLinear().domain([0, 10]).range([margin.left, width - margin.right]);
-        const yScale = d3.scaleLinear().domain([0, 10]).range([height - margin.bottom, margin.top]);
-
-        const xAxis = d3.axisBottom(xScale);
-        const yAxis = d3.axisLeft(yScale);
-
-        svg.append("g")
-            .attr("transform", `translate(0,${height - margin.bottom})`)
-            .call(xAxis);
-
-        svg.append("g")
-            .attr("transform", `translate(${margin.left},0)`)
-            .call(yAxis);
-
-        let data = [
-            { x: 1, y: 3 },
-            { x: 2, y: 5 },
-            { x: 3, y: 4 },
-            { x: 4, y: 7 },
-            { x: 5, y: 6 },
-            { x: 6, y: 8 },
-            { x: 7, y: 5 }
-        ];
-
-        const drag = d3.drag()
-            .on("start", dragStarted)
-            .on("drag", dragging)
-            .on("end", dragEnded);
-
-        function dragStarted(event, d) {
-            d3.select(this)
-                .raise()
-                .attr("stroke", "black");
-        }
-
-        function dragging(event, d) {
-            const [x, y] = d3.pointer(event);
-            d.x = xScale.invert(x);
-            d.y = yScale.invert(y);
-            d3.select(this)
-                .attr("cx", xScale(d.x))
-                .attr("cy", yScale(d.y));
-            update();
-        }
-
-        function dragEnded(event, d) {
-            d3.select(this).attr("stroke", null);
-        }
-
-        svg.selectAll("circle")
-            .data(data)
-            .enter()
-            .append("circle")
-            .attr("r", 5)
-            .attr("cx", d => xScale(d.x))
-            .attr("cy", d => yScale(d.y))
-            .call(drag);
-
-        function leastSquares(xSeries, ySeries) {
-            const xMean = d3.mean(xSeries);
-            const yMean = d3.mean(ySeries);
-            const ssXX = d3.sum(xSeries.map(d => Math.pow(d - xMean, 2)));
-            const ssXY = d3.sum(xSeries.map((d, i) => (d - xMean) * (ySeries[i] - yMean)));
-            const slope = ssXY / ssXX;
-            const intercept = yMean - (slope * xMean);
-            return [slope, intercept];
-        }
-
-        function update() {
-            const [slope, intercept] = leastSquares(data.map(d => d.x), data.map(d => d.y));
-            const line = d3.line()
-                .x(d => xScale(d.x))
-                .y(d => yScale(d.y));
-
-            const regressionData = [
-                { x: d3.min(data, d => d.x), y: slope * d3.min(data, d => d.x) + intercept },
-                { x: d3.max(data, d => d.x), y: slope * d3.max(data, d => d.x) + intercept }
-            ];
-
-            svg.selectAll("circle")
-                .attr("cx", d => xScale(d.x))
-                .attr("cy", d => yScale(d.y));
-
-            const regressionLine = svg.selectAll(".regression-line").data([regressionData]);
-            regressionLine.enter()
-                .append("path")
-                .attr("class", "regression-line")
-                .merge(regressionLine)
-                .attr("d", line)
-                .attr("stroke", "red")
-                .attr("stroke-width", 2)
-                .attr("fill", "none");
-
-            displayStats(slope, intercept);
-        }
-
-        function displayStats(slope, intercept) {
-            const statsDiv = document.getElementById("stats");
-            statsDiv.innerHTML = `
-                <p>Slope: ${slope.toFixed(2)}</p>
-                <p>Intercept: ${intercept.toFixed(2)}</p>
-                <p>Equation: y = ${slope.toFixed(2)}x + ${intercept.toFixed(2)}</p>
-            `;
-        }
-
-        update();
-    </script>
 </body>
 </html>
