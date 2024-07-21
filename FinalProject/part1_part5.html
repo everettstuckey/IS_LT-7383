@@ -43,17 +43,17 @@
         }
 
         a:hover {
-            text-decoration: underline.
+            text-decoration: underline;
         }
 
         .image-container {
             text-align: center;
-            margin: 2em 0.
+            margin: 2em 0;
         }
 
         .image-container img {
             max-width: 100%;
-            height: auto.
+            height: auto;
         }
 
         .collapsible {
@@ -63,14 +63,14 @@
             text-align: left;
             border: none;
             outline: none;
-            font-size: 1.25rem.
+            font-size: 1.25rem;
         }
 
         .content {
             padding: 0 18px;
             display: none;
             overflow: hidden;
-            background-color: #f1f1f1.
+            background-color: #f1f1f1;
         }
 
         .button {
@@ -84,7 +84,7 @@
             font-size: 16px;
             margin: 4px 2px;
             cursor: pointer;
-            border-radius: 4px.
+            border-radius: 4px;
         }
 
         table {
@@ -92,26 +92,28 @@
             margin: 0;
             table-layout: fixed;
             border-spacing: 0;
-            border-collapse: collapse.
+            border-collapse: collapse;
         }
 
         td {
             vertical-align: top;
             padding: 0;
-            margin: 0.
+            margin: 0;
         }
 
         .column-left,
         .column-right {
             width: 20%;
             padding: 0;
-            margin: 0.
+            margin: 0;
         }
 
         .column-center {
             width: 60%;
             padding: 20px;
-            background-color: #fff.
+            background-color: #fff;
+            height: 70vh;
+            overflow-y: scroll;
         }
 
         .full-height {
@@ -120,17 +122,43 @@
 
         header, footer {
             width: 100%;
-            box-sizing: border-box.
+            box-sizing: border-box;
         }
 
         header img, footer img {
             width: 100%;
-            height: auto.
+            height: auto;
         }
 
         .stats {
             margin: 20px 0;
-            font-size: 1rem.
+            font-size: 1rem;
+        }
+
+        .spreadsheet-table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .spreadsheet-table th, .spreadsheet-table td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .spreadsheet-table input {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .table-container {
+            max-height: 300px; /* Limit the height of the table container */
+            overflow-y: auto; /* Add vertical scrolling */
+        }
+
+        .hidden {
+            display: none;
         }
     </style>
 </head>
@@ -148,13 +176,32 @@
             <td class="column-center">
                 <!-- Main Content -->
                 <main class="container mx-auto py-8">
-                    <h4 id="historical-data-period">3. Obtaining Historical Stock Information Over a Period of Time</h4>
+                    <h4 id="historical-data-period">Practice Obtaining Historical Stock Information Over a Period of Time</h4>
                     <p>Syntax: <strong>GOOGLEFINANCE(ticker, [attribute], [start_date], [end_date], [interval])</strong></p>
                     <p>Example to fetch data over a period of time:</p>
                     <div class="image-container">
                         <img alt="Example of historical data over a period of time using GOOGLEFINANCE function" src="images/googlefinance-example-8.png"/>
                     </div>
                     <p><strong>=GOOGLEFINANCE("AAPL","Price",date(2016,6,1),date(2016,12,31),"Weekly")</strong></p>
+                    
+                    <!-- Spreadsheet Simulation -->
+                    <h4>Google Sheets Simulation</h4>
+                    <div class="table-container">
+                        <table class="spreadsheet-table">
+                            <thead>
+                                <tr>
+                                    <th>A</th>
+                                    <th>B</th>
+                                </tr>
+                            </thead>
+                            <tbody id="spreadsheet-body">
+                                <tr>
+                                    <td><input type="text" id="cellA1" oninput="processInput('cellA1')"></td>
+                                    <td id="cellB1"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </main>
             </td>
             <td class="column-right full-height" style="background-image: url('image006.jpg'); background-size: cover; background-position: top;">
@@ -165,8 +212,70 @@
     <footer class="bg-blue-600 text-white py-4">
         <div class="container mx-auto text-center">
             <a class="button" href="part1_part4.html">Back</a>
-            <a class="button" href="part1_part6.html">Next</a>
+            <a id="nextButton" class="button hidden" href="part1_part6.html">Next</a>
         </div>
     </footer>
+
+    <script>
+        function processInput(cellId) {
+            const input = document.getElementById(cellId).value;
+            if (input.startsWith("=GOOGLEFINANCE(")) {
+                const formula = input.match(/=GOOGLEFINANCE\("([^"]+)"\s*,\s*"([^"]+)"\s*,\s*date\((\d+),(\d+),(\d+)\)\s*,\s*date\((\d+),(\d+),(\d+)\)\s*,\s*"([^"]+)"\)/);
+                if (formula) {
+                    const stockSymbol = formula[1];
+                    const attribute = formula[2];
+                    const startDate = new Date(formula[3], formula[4] - 1, formula[5]);
+                    const endDate = new Date(formula[6], formula[7] - 1, formula[8]);
+                    const interval = formula[9];
+                    fetchHistoricalData(stockSymbol, attribute, startDate, endDate, interval, cellId);
+                }
+            }
+        }
+
+        function fetchHistoricalData(stockSymbol, attribute, startDate, endDate, interval, cellId) {
+            const apiKey = 'YOUR_API_KEY'; // Replace with your financial API key
+            const startDateString = startDate.toISOString().split('T')[0];
+            const endDateString = endDate.toISOString().split('T')[0];
+            const url = `https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=${stockSymbol}&apikey=${apiKey}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const timeSeries = data['Weekly Time Series'];
+                    const result = [];
+                    for (const date in timeSeries) {
+                        if (date >= startDateString && date <= endDateString) {
+                            result.push({ date: date, price: timeSeries[date]['1. open'] });
+                        }
+                    }
+                    updateCells(result);
+                })
+                .catch(error => {
+                    console.error('Error fetching historical data:', error);
+                });
+        }
+
+        function updateCells(data) {
+            const tableBody = document.getElementById('spreadsheet-body');
+            // Remove old rows except the first input row
+            while (tableBody.rows.length > 1) {
+                tableBody.deleteRow(1);
+            }
+
+            // Add new rows with historical data
+            data.forEach((row, index) => {
+                const newRow = tableBody.insertRow();
+                const cellA = newRow.insertCell(0);
+                const cellB = newRow.insertCell(1);
+                cellA.textContent = row.date;
+                cellB.textContent = row.price;
+            });
+
+            // Show the "Next" button when new rows are added
+            if (data.length > 0) {
+                document.getElementById('nextButton').classList.remove('hidden');
+            }
+        }
+    </script>
 </body>
 </html>
