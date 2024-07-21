@@ -160,6 +160,10 @@
         .hidden {
             display: none;
         }
+
+        .simulation-row {
+            background-color: #d3d3d3; /* Medium gray color */
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-900">
@@ -185,11 +189,11 @@
                     <p><strong>=GOOGLEFINANCE("AAPL","Price",date(2016,6,1),date(2016,12,31),"Weekly")</strong></p>
                     
                     <!-- Spreadsheet Simulation -->
-                    <h4>Google Sheets Simulation</h4>
+                    <h4>Google Sheets Simulation.  Enter a GoogleFinance Formula in the first row of column A</h4>
                     <div class="table-container">
                         <table class="spreadsheet-table">
                             <thead>
-                                <tr>
+                                <tr class="simulation-row">
                                     <th>A</th>
                                     <th>B</th>
                                 </tr>
