@@ -2,89 +2,129 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stock Market Heatmap</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Interactive Linear Regression</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
         }
-        .container {
-            width: 90%;
-            margin: auto;
-            overflow: hidden;
-            padding: 2em 0;
-            text-align: center;
+        svg {
+            border: 1px solid #ccc;
         }
-        img {
-            width: 100%;
-            height: auto;
-            max-width: 1000px;
+        .axis path,
+        .axis line {
+            fill: none;
+            shape-rendering: crispEdges;
+            stroke: #000;
+        }
+        .point {
+            fill: steelblue;
+            stroke: #fff;
+            cursor: pointer;
+        }
+        .stats {
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <header class="bg-blue-600 text-white py-4">
-        <div class="container mx-auto">
-            <h1 class="text-2xl text-white font-bold">Stock Market Heatmap</h1>
-        </div>
-    </header>
-    <main class="container mx-auto py-8">
-        <p>Below is the stock market heatmap:</p>
-        <img id="heatmap" src="" alt="Stock Market Heatmap">
-    </main>
-    <footer class="bg-blue-600 text-white py-4 text-center">
-        © 2024 Stock Market Heatmap
-    </footer>
-
-    <!-- Embed Node.js and WebSocket Server -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <svg width="800" height="600"></svg>
+    <div class="stats">
+        <p id="slope"></p>
+        <p id="intercept"></p>
+        <p id="r2"></p>
+    </div>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/simple-statistics@7.7.3/dist/simple-statistics.min.js"></script>
     <script>
-        // Start a WebSocket server to act as a proxy
-        const http = require('http');
-        const socketIo = require('socket.io');
-        const axios = require('axios');
+        const svg = d3.select("svg");
+        const width = +svg.attr("width");
+        const height = +svg.attr("height");
+        const margin = {top: 20, right: 30, bottom: 30, left: 40};
+        const innerWidth = width - margin.left - margin.right;
+        const innerHeight = height - margin.top - margin.bottom;
 
-        const server = http.createServer();
-        const io = socketIo(server);
+        const x = d3.scaleLinear().range([0, innerWidth]);
+        const y = d3.scaleLinear().range([innerHeight, 0]);
 
-        io.on('connection', (socket) => {
-            socket.on('fetch_heatmap', async () => {
-                try {
-                    const response = await axios.get('https://finviz.com/published_map.ashx?t=sec_all&st=d1&f=070924&i=sec_all_d1_144428979', {
-                        responseType: 'arraybuffer'
-                    });
-                    socket.emit('heatmap_data', Buffer.from(response.data).toString('base64'));
-                } catch (error) {
-                    socket.emit('heatmap_error', 'Error fetching the heatmap');
-                }
+        const g = svg.append("g")
+            .attr("transform", `translate(${margin.left},${margin.top})`);
+
+        const data = [
+            {x: 100, y: 200},
+            {x: 200, y: 300},
+            {x: 300, y: 250},
+            {x: 400, y: 400},
+            {x: 500, y: 350}
+        ];
+
+        x.domain([0, innerWidth]);
+        y.domain([0, innerHeight]);
+
+        const xAxis = d3.axisBottom(x).ticks(10);
+        const yAxis = d3.axisLeft(y).ticks(10);
+
+        g.append("g")
+            .attr("transform", `translate(0,${innerHeight})`)
+            .call(xAxis);
+
+        g.append("g")
+            .call(yAxis);
+
+        const line = d3.line()
+            .x(d => x(d.x))
+            .y(d => y(d.y));
+
+        const updateLine = () => {
+            const xValues = data.map(d => d.x);
+            const yValues = data.map(d => d.y);
+            const regression = ss.linearRegression(data.map(d => [d.x, d.y]));
+            const regressionLine = ss.linearRegressionLine(regression);
+            const r2 = ss.rSquared(data.map(d => [d.x, d.y]), regressionLine);
+
+            g.selectAll(".regression-line").remove();
+
+            g.append("line")
+                .attr("class", "regression-line")
+                .attr("x1", x(d3.min(xValues)))
+                .attr("y1", y(regressionLine(d3.min(xValues))))
+                .attr("x2", x(d3.max(xValues)))
+                .attr("y2", y(regressionLine(d3.max(xValues))))
+                .style("stroke", "black")
+                .style("stroke-width", 2)
+                .style("fill", "none");
+
+            document.getElementById('slope').textContent = `Slope: ${regression.m.toFixed(2)}`;
+            document.getElementById('intercept').textContent = `Intercept: ${regression.b.toFixed(2)}`;
+            document.getElementById('r2').textContent = `R²: ${r2.toFixed(2)}`;
+        };
+
+        updateLine();
+
+        const drag = d3.drag()
+            .on("start", function(event, d) {
+                d3.select(this).raise().attr("stroke", "black");
+            })
+            .on("drag", function(event, d) {
+                const [newX, newY] = d3.pointer(event, svg.node());
+                d.x = x.invert(newX - margin.left);
+                d.y = y.invert(newY - margin.top);
+                d3.select(this)
+                    .attr("cx", newX - margin.left)
+                    .attr("cy", newY - margin.top);
+                updateLine();
+            })
+            .on("end", function(event, d) {
+                d3.select(this).attr("stroke", null);
             });
-        });
 
-        server.listen(3000, () => {
-            console.log('Proxy server is running on port 3000');
-        });
-
-        // Client code to fetch and display the heatmap
-        document.addEventListener("DOMContentLoaded", function() {
-            const socket = io('http://localhost:3000');
-
-            socket.on('connect', () => {
-                socket.emit('fetch_heatmap');
-            });
-
-            socket.on('heatmap_data', (data) => {
-                document.getElementById('heatmap').src = 'data:image/png;base64,' + data;
-            });
-
-            socket.on('heatmap_error', (error) => {
-                console.error(error);
-            });
-        });
+        g.selectAll(".point")
+            .data(data)
+            .enter().append("circle")
+            .attr("class", "point")
+            .attr("r", 5)
+            .attr("cx", d => x(d.x))
+            .attr("cy", d => y(d.y))
+            .call(drag);
     </script>
 </body>
 </html>
