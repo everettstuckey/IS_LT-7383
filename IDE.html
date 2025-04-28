@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch AAPL Stock Data with PyScript</title>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css">
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+</head>
+<body>
+    <h1>AAPL Stock Data Fetcher</h1>
+    <p>This page fetches AAPL stock data for the year 2023 and displays the first few rows.</p>
+    <div id="output"></div>
+    <py-script>
+        from pyodide.http import pyfetch
+        import pandas as pd
+        from io import StringIO
+        import js
+
+        async def fetch_stock_data():
+            await js.pyodide.loadPackage("pandas")
+            ticker_symbol = 'AAPL'
+            start_date = '2023-01-01'
+            end_date = '2023-12-31'
+            
+            url = f'https://query1.finance.yahoo.com/v7/finance/download/{ticker_symbol}?period1=1672531200&period2=1704067199&interval=1d&events=history'
+            response = await pyfetch(url)
+            csv_data = await response.string()
+            
+            data = pd.read_csv(StringIO(csv_data))
+            
+            # Display the first few rows
+            display(data.head())
+            
+            # Save the data to a CSV file
+            with open(f'{ticker_symbol}_prices_2023.csv', 'w') as f:
+                f.write(csv_data)
+
+        fetch_stock_data()
+    </py-script>
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 2</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            color: #333;
+        }
+
+        p {
+            margin: 1em 0;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 0.5em 0;
+        }
+
+        a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 2em 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .collapsible {
+            cursor: pointer;
+            padding: 10px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            font-size: 1.25rem;
+        }
+
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f1f1f1;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        table {
+            width: 100%;
+            margin: 0;
+            table-layout: fixed;
+            border-spacing: 0;
+            border-collapse: collapse;
+        }
+
+        td {
+            vertical-align: top;
+            padding: 0;
+            margin: 0;
+        }
+
+        .column-left,
+        .column-right {
+            width: 20%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .column-center {
+            width: 60%;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .full-height {
+            height: calc(100vh - 64px); /* Adjusting for the header height */
+        }
+
+        header, footer {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        header img, footer img {
+            width: 100%;
+            height: auto;
+        }
+
+        .stats {
+            margin: 20px 0;
+            font-size: 1rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .visible {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 text-gray-900">
+    <header class="bg-blue-600 text-white py-4">
+        <div class="container mx-auto">
+            <h1 class="text-2xl text-white font-bold">Linear Regression</h1>
+        </div>
+    </header>
+    <table>
+        <tr>
+            <td class="column-left full-height" style="background-image: url('image005.jpg'); background-size: cover; background-position: top;">
+            </td>
+            <td class="column-center">
+                <h2>Introduction to Linear Regression</h2><br>
+  <div class="video-container">
+                        
+                        <video controls width="600">
+                            <source src="LinearRegression.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                <br>
+                <h2>Interactive Graph Instructions</h2>
+                <p>To interact with the graph, follow these steps:</p>
+                <ol>
+                    <li><strong>Drag Points:</strong> Click and hold a data point to drag it to a new position on the graph.</li>
+                    <li><strong>Observe Changes:</strong> As you move the points, the regression line will automatically update to reflect the new data positions.</li>
+                    <li><strong>Analyze Results:</strong> Use the updated regression line to understand the impact of your changes on the linear model.</li>
+                </ol>
+
+    <svg width="800" height="600"></svg>
+    <div class="stats">
+        <p id="slope"></p>
+        <p id="intercept"></p>
+        <p id="r2"></p>
+    </div>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/simple-statistics@7.7.3/dist/simple-statistics.min.js"></script>
+    <script>
+        const svg = d3.select("svg");
+        const width = +svg.attr("width");
+        const height = +svg.attr("height");
+        const margin = {top: 20, right: 30, bottom: 30, left: 40};
+        const innerWidth = width - margin.left - margin.right;
+        const innerHeight = height - margin.top - margin.bottom;
+
+        const x = d3.scaleLinear().range([0, innerWidth]);
+        const y = d3.scaleLinear().range([innerHeight, 0]);
+
+        const g = svg.append("g")
+            .attr("transform", `translate(${margin.left},${margin.top})`);
+
+        const data = [
+            {x: 100, y: 200},
+            {x: 200, y: 300},
+            {x: 300, y: 250},
+            {x: 400, y: 400},
+            {x: 500, y: 350}
+        ];
+
+        x.domain([0, innerWidth]);
+        y.domain([0, innerHeight]);
+
+        const xAxis = d3.axisBottom(x).ticks(10);
+        const yAxis = d3.axisLeft(y).ticks(10);
+
+        g.append("g")
+            .attr("transform", `translate(0,${innerHeight})`)
+            .call(xAxis);
+
+        g.append("g")
+            .call(yAxis);
+
+        const line = d3.line()
+            .x(d => x(d.x))
+            .y(d => y(d.y));
+
+        const updateLine = () => {
+            const xValues = data.map(d => d.x);
+            const yValues = data.map(d => d.y);
+            const regression = ss.linearRegression(data.map(d => [d.x, d.y]));
+            const regressionLine = ss.linearRegressionLine(regression);
+            const r2 = ss.rSquared(data.map(d => [d.x, d.y]), regressionLine);
+
+            g.selectAll(".regression-line").remove();
+            g.selectAll(".regression-label").remove();
+
+            g.append("line")
+                .attr("class", "regression-line")
+                .attr("x1", x(d3.min(xValues)))
+                .attr("y1", y(regressionLine(d3.min(xValues))))
+                .attr("x2", x(d3.max(xValues)))
+                .attr("y2", y(regressionLine(d3.max(xValues))))
+                .style("stroke", "blue")
+                .style("stroke-width", 2)
+                .style("fill", "none");
+
+            g.append("text")
+                .attr("class", "regression-label")
+                .attr("x", x((d3.min(xValues) + d3.max(xValues)) / 2))
+                .attr("y", y(regressionLine((d3.min(xValues) + d3.max(xValues)) / 2)) - 10)
+                .style("fill", "blue")
+                .text(`R²: ${r2.toFixed(2)}`);
+
+            document.getElementById('slope').textContent = `Slope: ${regression.m.toFixed(2)}`;
+            document.getElementById('intercept').textContent = `Intercept: ${regression.b.toFixed(2)}`;
+            document.getElementById('r2').textContent = `R²: ${r2.toFixed(2)}`;
+
+            g.selectAll(".point").remove();
+            g.selectAll(".point-label").remove();
+
+            g.selectAll(".point")
+                .data(data)
+                .enter().append("circle")
+                .attr("class", "point")
+                .attr("r", 5)
+                .attr("cx", d => x(d.x))
+                .attr("cy", d => y(d.y))
+                .call(drag);
+
+            g.selectAll(".point-label")
+                .data(data)
+                .enter().append("text")
+                .attr("class", "point-label")
+                .attr("x", d => x(d.x) + 5)
+                .attr("y", d => y(d.y) - 5)
+                .text(d => `(${d.x.toFixed(0)}, ${d.y.toFixed(0)})`);
+
+            const nextButton = document.getElementById('next-button');
+            if (r2.toFixed(2) == 0.00) {
+                nextButton.classList.remove('hidden');
+                nextButton.classList.add('visible');
+            } else {
+                nextButton.classList.remove('visible');
+                nextButton.classList.add('hidden');
+            }
+        };
+
+        const drag = d3.drag()
+            .on("start", function(event, d) {
+                d3.select(this).raise().attr("stroke", "black");
+            })
+            .on("drag", function(event, d) {
+                const [newX, newY] = d3.pointer(event, svg.node());
+                d.x = x.invert(newX - margin.left);
+                d.y = y.invert(newY - margin.top);
+                d3.select(this)
+                    .attr("cx", x(d.x))
+                    .attr("cy", y(d.y));
+                updateLine();
+            })
+            .on("end", function(event, d) {
+                d3.select(this).attr("stroke", null);
+            });
+
+        g.selectAll(".point")
+            .data(data)
+            .enter().append("circle")
+            .attr("class", "point")
+            .attr("r", 5)
+            .attr("cx", d => x(d.x))
+            .attr("cy", d => y(d.y))
+            .call(drag);
+
+        g.selectAll(".point-label")
+            .data(data)
+            .enter().append("text")
+            .attr("class", "point-label")
+            .attr("x", d => x(d.x) + 5)
+            .attr("y", d => y(d.y) - 5)
+            .text(d => `(${d.x.toFixed(0)}, ${d.y.toFixed(0)})`);
+
+        updateLine();
+    </script>
+            </td>
+            <td class="column-right full-height" style="background-image: url('image006.jpg'); background-size: cover; background-position: top;">
+            </td>
+        </tr>
+    </table>
+
+    <footer class="bg-blue-600 text-white py-4">
+        <div class="container mx-auto text-center">
+            <a class="button" href="part1_part7.html">Back</a>
+            <a id="next-button" class="button hidden" href="part2.html">Next</a>
+            <a style="color: white;">Manipulate the data points to generate an R² = 0.00 in order to advance</a>
+        </div>
+    </footer>
+</body>
+</html>
