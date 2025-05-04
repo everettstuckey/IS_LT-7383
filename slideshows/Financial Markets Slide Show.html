@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Introduction to Financial Markets</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Open+Sans:wght@300;400&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --accent:#00d1b2;            /* turquoise for buttons/links   */
+    --text:#ffffff;              /* main text colour              */
+    --overlay:linear-gradient(135deg,#0f2027 0%,#203a43 50%,#2c5364 100%);
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  body{margin:0;font-family:'Open Sans',sans-serif;color:var(--text);}
+  h2{font-family:'Poppins',sans-serif;margin:.2em 0 .6em;line-height:1.2;font-size:2rem;}
+  .slide{
+    position:relative;
+    min-height:100vh;
+    padding:3.5rem 7vw;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    background-size:cover;
+    background-position:center;
+    overflow:hidden;
+  }
+  .slide::before{
+    content:'';
+    position:absolute;inset:0;
+    background:var(--overlay);
+    mix-blend-mode:multiply;
+  }
+  .slide>*{position:relative;z-index:1;}
+  ul{margin:.2em 0 1.2em 1.3em;padding:0;}
+  li{margin:.4em 0;}
+  .nav{text-align:center;position:absolute;bottom:24px;left:0;right:0;}
+  .nav button{
+    background:var(--accent);color:#fff;border:none;border-radius:.35rem;
+    padding:.55rem 1.25rem;margin:.1rem .4rem;font-size:1rem;font-family:'Poppins',sans-serif;
+    cursor:pointer;transition:.25s filter;
+  }
+  .nav button:hover:not(:disabled){filter:brightness(1.15);}
+  .nav button:disabled{opacity:.45;cursor:not-allowed;}
+  @media(max-width:720px){body{font-size:15px;} h2{font-size:1.5rem;}}
+
+.slide-flex{display:flex;align-items:flex-start;justify-content:space-between;gap:32px;}
+.slide-content{flex:2;min-width:0;}
+.slide-image{max-width:340px;max-height:440px;object-fit:contain;flex:1;border-radius:12px;box-shadow:0 0 10px #bbb;background:#fff;margin-left:8px;}</style>
+</head>
+<body>
+<!-- -------- Slide 1 -------- -->
+<div class="slide" id="s1" style="background-image:url('dalle_slide_images/slide_1.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Introduction to Financial Markets</h2>
+<ul>
+<li><strong>Welcome!</strong> Begin your journey into the world of financial markets with hands-on simulations and interactive learning.</li>
+<li><strong>Key Concepts Explored:</strong>
+<ul>
+<li>Stocks, bonds, risk, return, diversification, and trading strategy</li>
+</ul>
+</li>
+<li><strong>Simulation Experience:</strong>
+<ul>
+<li>Use MarketSim to make real-time decisions with virtual money</li>
+<li>Apply each concept through practical scenarios and portfolio management</li>
+</ul>
+</li>
+<li><strong>Reflection:</strong> Complete a portfolio project to reinforce your learning and track your progress.</li>
+<li><strong>Diagram:</strong> Visualize the relationship between stocks, bonds, and portfolio growth using a simple flowchart.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_1.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 2 -------- -->
+<div class="slide" id="s2" style="background-image:url('dalle_slide_images/slide_2.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Learning Goals</h2>
+<ul>
+<li><strong>Key Terms:</strong> Define stock, bond, dividend, risk, and return.</li>
+<li><strong>Market Forces:</strong> Explain how supply and demand influence price movements in real markets.</li>
+<li><strong>Math Skills:</strong> Calculate returns using basic formulas and understand the impact of gains and losses.</li>
+<li><strong>Diversification:</strong> Build a portfolio that spreads risk across multiple assets and sectors.</li>
+<li><strong>Strategy Comparison:</strong> Evaluate the pros and cons of long-term versus short-term investment approaches.</li>
+<li><strong>Diagram:</strong> Use a concept map to connect each learning goal to practical trading scenarios.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_2.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 3 -------- -->
+<div class="slide" id="s3" style="background-image:url('dalle_slide_images/slide_3.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Why Learn About Markets?</h2>
+<ul>
+<li><strong>Life Impact:</strong> Financial decisions influence your future opportunities, security, and well-being.</li>
+<li><strong>Economic Role:</strong> Markets provide capital for innovation, business growth, and job creation.</li>
+<li><strong>Protection:</strong> Financial literacy helps you avoid scams, make informed choices, and recognize risks.</li>
+<li><strong>Safe Practice:</strong> Simulations let you experience real market volatility without risking real money.</li>
+<li><strong>Empowerment:</strong> Gain confidence to manage your own investments and financial future.</li>
+<li><strong>Diagram:</strong> Flowchart showing how financial education leads to smarter decisions and better outcomes.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_3.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 4 -------- -->
+<div class="slide" id="s4" style="background-image:url('dalle_slide_images/slide_4.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>What Is a Stock Market?</h2>
+<ul>
+<li><strong>Definition:</strong> A stock market is a public marketplace for buying and selling shares of companies.</li>
+<li><strong>Participants:</strong> Investors, traders, and institutions interact to set prices through supply and demand.</li>
+<li><strong>Examples:</strong> New York Stock Exchange (NYSE), NASDAQ.</li>
+<li><strong>Function:</strong> Facilitates capital raising for companies and investment opportunities for individuals.</li>
+<li><strong>Diagram:</strong> Simple diagram: investors ⇄ stock market ⇄ companies.</li>
+<li><strong>Key Point:</strong> Prices change constantly as buyers and sellers agree on value.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_4.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 5 -------- -->
+<div class="slide" id="s5" style="background-image:url('dalle_slide_images/slide_5.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Meet MarketSim</h2>
+<ul>
+<li><strong>Virtual Trading Platform:</strong> Practice trading with $100,000 in simulated cash.</li>
+<li><strong>Real-Time Data:</strong> Experience live market dynamics with prices updated every few seconds (slight delay).</li>
+<li><strong>Leaderboards:</strong> Compete with classmates and track your progress on the leaderboard.</li>
+<li><strong>Safe Environment:</strong> Make mistakes, test strategies, and learn—no real money is at risk.</li>
+<li><strong>Features:</strong>
+<ul>
+<li>Buy and sell stocks and bonds</li>
+<li>Monitor portfolio performance</li>
+<li>Access research tools and charts</li>
+</ul>
+</li>
+<li><strong>Diagram:</strong> Dashboard mockup showing portfolio, recent trades, and leaderboard.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_5.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 6 -------- -->
+<div class="slide" id="s6" style="background-image:url('dalle_slide_images/slide_6.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>What Is a Stock?</h2>
+<ul>
+<li><strong>Ownership:</strong> Each stock represents a partial ownership in a corporation.</li>
+<li><strong>Rights:</strong> Stockholders may receive dividends, vote at annual meetings, and benefit from company growth.</li>
+<li><strong>Value:</strong> Stock prices fluctuate based on company performance and market conditions.</li>
+<li><strong>Types:</strong> Common vs. preferred stock—different rights and priorities.</li>
+<li><strong>Diagram:</strong> Pie chart showing how stockholders own a piece of the company.</li>
+<li><strong>Key Point:</strong> Stocks are a primary way to build long-term wealth.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_6.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 7 -------- -->
+<div class="slide" id="s7" style="background-image:url('dalle_slide_images/slide_7.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Dividends</h2>
+<ul>
+<li><strong>Definition:</strong> Dividends are cash payments distributed from company profits to shareholders.</li>
+<li><strong>Frequency:</strong> Usually paid quarterly, but can vary by company.</li>
+<li><strong>Purpose:</strong> Provide income in addition to potential stock price appreciation.</li>
+<li><strong>Eligibility:</strong> Must own the stock before the ex-dividend date to receive payment.</li>
+<li><strong>Diagram:</strong> Timeline showing announcement, ex-dividend, record, and payment dates.</li>
+<li><strong>Key Point:</strong> Not all companies pay dividends; some reinvest profits for growth.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_7.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 8 -------- -->
+<div class="slide" id="s8" style="background-image:url('dalle_slide_images/slide_8.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Ticker Symbols</h2>
+<ul>
+<li><strong>Definition:</strong> Unique short codes (e.g., AAPL, MSFT) assigned to publicly traded companies.</li>
+<li><strong>Usage:</strong> Enter ticker symbols in MarketSim and real trading platforms to research or place trades.</li>
+<li><strong>Examples:</strong> AAPL (Apple), TSLA (Tesla), GOOGL (Alphabet).</li>
+<li><strong>Purpose:</strong> Quickly identify and track stocks across exchanges.</li>
+<li><strong>Diagram:</strong> Table showing company names and their ticker symbols.</li>
+<li><strong>Key Point:</strong> Always double-check the ticker before trading to avoid mistakes.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_8.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 9 -------- -->
+<div class="slide" id="s9" style="background-image:url('dalle_slide_images/slide_9.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Your Portfolio</h2>
+<ul>
+<li><strong>Definition:</strong> Your portfolio is the total collection of stocks, bonds, and cash you own.</li>
+<li><strong>Value Fluctuations:</strong> Portfolio value changes as market prices rise or fall.</li>
+<li><strong>Components:</strong>
+<ul>
+<li>Stocks: Ownership in companies</li>
+<li>Bonds: Loans to companies/governments</li>
+<li>Cash: Uninvested funds</li>
+</ul>
+</li>
+<li><strong>Goal:</strong> Grow your portfolio over time while managing risk.</li>
+<li><strong>Diagram:</strong> Pie chart illustrating portfolio allocation.</li>
+<li><strong>Key Point:</strong> Diversification helps reduce risk and smooth returns.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_9.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 10 -------- -->
+<div class="slide" id="s10" style="background-image:url('dalle_slide_images/slide_10.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>What Is a Bond?</h2>
+<ul>
+<li><strong>Definition:</strong> A bond is a loan you provide to a company or government in exchange for regular interest payments.</li>
+<li><strong>Interest:</strong> Bonds pay fixed or variable interest, called the coupon rate.</li>
+<li><strong>Risk Level:</strong> Generally less risky than stocks, but not risk-free.</li>
+<li><strong>Types:</strong> Corporate bonds, municipal bonds, government (Treasury) bonds.</li>
+<li><strong>Diagram:</strong> Timeline showing bond issue, interest payments, and maturity.</li>
+<li><strong>Key Point:</strong> Bonds help balance risk in a diversified portfolio.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_10.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 11 -------- -->
+<div class="slide" id="s11" style="background-image:url('dalle_slide_images/slide_11.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Stocks vs Bonds</h2>
+<ul>
+<li><strong>Stocks:</strong>
+<ul>
+<li>Represent ownership in a company</li>
+<li>Potential for high returns through price appreciation and dividends</li>
+<li>Higher risk due to market volatility and company performance</li>
+</ul>
+</li>
+<li><strong>Bonds:</strong>
+<ul>
+<li>Loans to companies or governments</li>
+<li>Provide steady interest income (coupon payments)</li>
+<li>Generally lower risk than stocks, but not risk-free</li>
+</ul>
+</li>
+<li><strong>Key Comparison:</strong> Stocks offer growth potential, bonds offer stability. Most portfolios use both for balance.</li>
+<li><strong>Diagram:</strong> Table comparing features: ownership, risk, return, income, and volatility.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_11.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 12 -------- -->
+<div class="slide" id="s12" style="background-image:url('dalle_slide_images/slide_12.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Why Invest in Stocks?</h2>
+<ul>
+<li><strong>Growth Potential:</strong> Stocks historically offer higher long-term returns than most other investments.</li>
+<li><strong>Dividend Income:</strong> Many companies pay dividends, providing regular income.</li>
+<li><strong>Liquidity:</strong> Stocks can be bought and sold quickly on public exchanges.</li>
+<li><strong>Ownership:</strong> Shareholders may vote on company decisions and benefit from company success.</li>
+<li><strong>Risks:</strong> Stock prices can be volatile; patience and long-term perspective are essential.</li>
+<li><strong>Diagram:</strong> Line graph showing long-term stock market growth with short-term fluctuations.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_12.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 13 -------- -->
+<div class="slide" id="s13" style="background-image:url('dalle_slide_images/slide_13.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Why Invest in Bonds?</h2>
+<ul>
+<li><strong>Income:</strong> Bonds provide regular interest payments, helping to stabilize your portfolio.</li>
+<li><strong>Capital Preservation:</strong> Bonds typically return principal at maturity, protecting your initial investment.</li>
+<li><strong>Diversification:</strong> Bonds often move differently from stocks, reducing overall risk.</li>
+<li><strong>Risk Reduction:</strong> Adding bonds to a portfolio can cushion losses during stock market downturns.</li>
+<li><strong>Diagram:</strong> Pie chart showing a balanced portfolio with both stocks and bonds.</li>
+<li><strong>Key Point:</strong> Bonds are essential for conservative investors and those nearing financial goals.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_13.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 14 -------- -->
+<div class="slide" id="s14" style="background-image:url('dalle_slide_images/slide_14.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Supply &amp; Demand Basics</h2>
+<ul>
+<li><strong>Core Principle:</strong> Prices are set by the balance of buyers (demand) and sellers (supply).</li>
+<li><strong>Price Increases:</strong> When demand is greater than supply, prices rise.</li>
+<li><strong>Price Decreases:</strong> When supply is greater than demand, prices fall.</li>
+<li><strong>Market Example:</strong> Earnings reports, news, and trends can shift demand or supply quickly.</li>
+<li><strong>Diagram:</strong> Supply and demand curves intersecting at equilibrium price.</li>
+<li><strong>Key Point:</strong> Understanding supply and demand helps explain why prices move in financial markets.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_14.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 15 -------- -->
+<div class="slide" id="s15" style="background-image:url('dalle_slide_images/slide_15.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Market Equilibrium</h2>
+<ul>
+<li><strong>Definition:</strong> The point where supply and demand are balanced and prices stabilize.</li>
+<li><strong>Adjustment:</strong> Markets naturally move toward equilibrium as buyers and sellers react to price changes.</li>
+<li><strong>Example:</strong> If prices are too high, demand falls and supply rises, pushing prices down to equilibrium.</li>
+<li><strong>Diagram:</strong> Graph showing equilibrium price at the intersection of supply and demand curves.</li>
+<li><strong>Key Point:</strong> Equilibrium is dynamic—constantly shifting with market news, events, and investor sentiment.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_15.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 16 -------- -->
+<div class="slide" id="s16" style="background-image:url('dalle_slide_images/slide_16.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>News Moves Markets</h2>
+<ul>
+<li><strong>Impact:</strong> News events can quickly change investor sentiment and market direction.</li>
+<li><strong>Types of News:</strong>
+<ul>
+<li>Earnings reports</li>
+<li>Product launches</li>
+<li>Economic data releases</li>
+<li>Crises or scandals</li>
+</ul>
+</li>
+<li><strong>Price Reaction:</strong> Positive news increases demand, negative news increases supply.</li>
+<li><strong>Diagram:</strong> Timeline showing a news event and resulting price spike or drop.</li>
+<li><strong>Key Point:</strong> Stay informed—news can create both risks and opportunities.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_16.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 17 -------- -->
+<div class="slide" id="s17" style="background-image:url('dalle_slide_images/slide_17.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Scenario: Good News</h2>
+<ul>
+<li><strong>Example:</strong> Company beats earnings expectations or announces a breakthrough product.</li>
+<li><strong>Market Reaction:</strong> Demand for shares increases, pushing prices higher.</li>
+<li><strong>Decision Point:</strong> Consider buying before the news is widely known, but be cautious of hype.</li>
+<li><strong>Risks:</strong> Prices can overreact and later correct.</li>
+<li><strong>Diagram:</strong> Price chart with a spike after a news event.</li>
+<li><strong>Strategy:</strong> Weigh the news against your investment plan before acting.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_17.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 18 -------- -->
+<div class="slide" id="s18" style="background-image:url('dalle_slide_images/slide_18.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Result</h2>
+<ul>
+<li><strong>Opportunity:</strong> Early buyers may profit as prices rise on good news.</li>
+<li><strong>Verification:</strong> Always confirm the accuracy of news before trading.</li>
+<li><strong>Risks:</strong> Acting on rumors or incomplete information can lead to losses.</li>
+<li><strong>Diagram:</strong> Timeline showing news release, price jump, and possible correction.</li>
+<li><strong>Key Point:</strong> Evidence-based investing is safer than chasing rumors.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_18.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 19 -------- -->
+<div class="slide" id="s19" style="background-image:url('dalle_slide_images/slide_19.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Scenario: Bad News</h2>
+<ul>
+<li><strong>Example:</strong> Negative events like scandals, data breaches, or poor earnings reports.</li>
+<li><strong>Market Reaction:</strong> Selling pressure increases, causing prices to fall.</li>
+<li><strong>Decision Point:</strong> Consider whether to sell, hold, or buy at a discount.</li>
+<li><strong>Risks:</strong> Panic selling can lock in losses; careful analysis is needed.</li>
+<li><strong>Diagram:</strong> Price chart showing a sharp drop after bad news.</li>
+<li><strong>Strategy:</strong> Evaluate fundamentals before making a decision.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_19.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 20 -------- -->
+<div class="slide" id="s20" style="background-image:url('dalle_slide_images/slide_20.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Result</h2>
+<ul>
+<li><strong>Panic Selling:</strong> Can drive prices lower than justified by fundamentals.</li>
+<li><strong>Informed Response:</strong> Analyze the underlying cause—temporary setback or lasting impact?</li>
+<li><strong>Opportunity:</strong> Sometimes bad news creates buying opportunities for patient investors.</li>
+<li><strong>Diagram:</strong> Chart showing overreaction and gradual recovery.</li>
+<li><strong>Key Point:</strong> Avoid emotional decisions; use analysis and a long-term view.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_20.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 21 -------- -->
+<div class="slide" id="s21" style="background-image:url('dalle_slide_images/slide_21.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Risk &amp; Return</h2>
+<ul>
+<li><strong>Trade-Off:</strong> Higher returns usually come with higher risk.</li>
+<li><strong>Types of Risk:</strong> Market risk, company risk, interest rate risk, inflation risk, and more.</li>
+<li><strong>Reward:</strong> Potential for gains increases with risk, but so does the chance of loss.</li>
+<li><strong>Managing Risk:</strong> Diversification and research can help control risk.</li>
+<li><strong>Diagram:</strong> Risk-return graph showing upward-sloping curve.</li>
+<li><strong>Key Point:</strong> Decide your risk tolerance before investing.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_21.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 22 -------- -->
+<div class="slide" id="s22" style="background-image:url('dalle_slide_images/slide_22.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Risk-Return Curve</h2>
+<ul>
+<li><strong>Visual Guide:</strong> Shows how different investments offer varying risk and return.</li>
+<li><strong>Low Risk/Low Return:</strong> Savings accounts, government bonds.</li>
+<li><strong>Medium Risk/Medium Return:</strong> Corporate bonds, blue-chip stocks.</li>
+<li><strong>High Risk/High Return:</strong> Growth stocks, venture capital.</li>
+<li><strong>Diagram:</strong> Curve plotting risk on x-axis and return on y-axis, with asset classes labeled.</li>
+<li><strong>Key Point:</strong> Choose investments that match your goals and comfort with risk.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_22.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 23 -------- -->
+<div class="slide" id="s23" style="background-image:url('dalle_slide_images/slide_23.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Quick Calculation</h2>
+<ul>
+<li><strong>Example:</strong> Buy 5 shares at $20 each, sell at $25 each.</li>
+<li><strong>Profit Calculation:</strong> (Sell price - Buy price) x Number of shares = ($25 - $20) x 5 = $25.</li>
+<li><strong>Return %:</strong> (Profit ÷ Cost) x 100 = ($25 ÷ $100) x 100 = 25%.</li>
+<li><strong>Diagram:</strong> Step-by-step calculation flowchart.</li>
+<li><strong>Key Point:</strong> Understanding returns helps you compare investments.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_23.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 24 -------- -->
+<div class="slide" id="s24" style="background-image:url('dalle_slide_images/slide_24.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Answer</h2>
+<ul>
+<li><strong>Formula:</strong> Return % = (Profit ÷ Cost) x 100.</li>
+<li><strong>Worked Example:</strong> Profit = $25; Cost = $100; Return = 25%.</li>
+<li><strong>Application:</strong> Use this formula for any buy/sell scenario.</li>
+<li><strong>Diagram:</strong> Calculation box with inputs and outputs labeled.</li>
+<li><strong>Key Point:</strong> Accurate return calculations are essential for tracking performance.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_24.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 25 -------- -->
+<div class="slide" id="s25" style="background-image:url('dalle_slide_images/slide_25.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Diversification</h2>
+<ul>
+<li><strong>Definition:</strong> Diversification means spreading investments across different assets to reduce risk.</li>
+<li><strong>Benefit:</strong> Limits the impact of a poor-performing investment on your overall portfolio.</li>
+<li><strong>How:</strong> Invest in various sectors, asset classes, and geographic regions.</li>
+<li><strong>Diagram:</strong> Pie chart showing diversified vs. concentrated portfolios.</li>
+<li><strong>Key Point:</strong> Diversification is a key strategy for long-term success.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_25.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 26 -------- -->
+<div class="slide" id="s26" style="background-image:url('dalle_slide_images/slide_26.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Diversify by Sector</h2>
+<ul>
+<li><strong>Sector Examples:</strong> Technology, Healthcare, Finance, Energy, Retail, Industrials, Utilities.</li>
+<li><strong>Why Diversify?</strong> Different sectors react differently to economic changes.</li>
+<li><strong>Strategy:</strong> Allocate funds across multiple sectors to smooth returns and lower risk.</li>
+<li><strong>Diagram:</strong> Bar chart comparing sector returns in different market cycles.</li>
+<li><strong>Key Point:</strong> Sector diversification helps manage risk from economic shifts.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →"&gt;</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_26.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 27 -------- -->
+<div class="slide" id="s27" style="background-image:url('dalle_slide_images/slide_27.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Portfolio Pie Example</h2>
+<ul>
+<li><strong>Visualization:</strong> Pie charts show portfolio allocation by asset or sector.</li>
+<li><strong>Risk Management:</strong> No single holding should dominate your portfolio.</li>
+<li><strong>Adjustments:</strong> Rebalance periodically to maintain desired allocation.</li>
+<li><strong>Diagram:</strong> Example pie chart with labeled slices for each holding.</li>
+<li><strong>Key Point:</strong> Visual tools make it easier to spot imbalances and improve diversification.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →"&gt;</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_27.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 28 -------- -->
+<div class="slide" id="s28" style="background-image:url('dalle_slide_images/slide_28.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Quiz: Who’s Safer?</h2>
+<ul>
+<li><strong>Scenario:</strong> Compare risk of holding one stock vs. a diversified five-sector portfolio.</li>
+<li><strong>Discussion:</strong> What happens if your single stock drops in value?</li>
+<li><strong>Lesson:</strong> Diversification reduces the risk of large losses from one holding.</li>
+<li><strong>Diagram:</strong> Risk meter comparing single vs. diversified portfolios.</li>
+<li><strong>Key Point:</strong> More holdings in different sectors usually means lower risk.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →"&gt;</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_28.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 29 -------- -->
+<div class="slide" id="s29" style="background-image:url('dalle_slide_images/slide_29.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Answer</h2>
+<ul>
+<li><strong>Explanation:</strong> A diversified portfolio spreads risk across sectors, reducing the impact of one underperformer.</li>
+<li><strong>Benefit:</strong> Smoother returns and less stress during market swings.</li>
+<li><strong>Diagram:</strong> Line chart showing volatility of single vs. multi-sector portfolios.</li>
+<li><strong>Key Point:</strong> Diversification is a proven way to manage investment risk.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →"&gt;</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_29.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 30 -------- -->
+<div class="slide" id="s30" style="background-image:url('dalle_slide_images/slide_30.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Bull vs Bear</h2>
+<ul>
+<li><strong>Bull Market:</strong> Period of rising prices and optimism.</li>
+<li><strong>Bear Market:</strong> Period of falling prices and pessimism.</li>
+<li><strong>Cycle:</strong> Markets alternate between bull and bear phases.</li>
+<li><strong>Strategy:</strong> Adapt your approach to the current market environment.</li>
+<li><strong>Diagram:</strong> Market cycle graph showing bull and bear phases.</li>
+<li><strong>Key Point:</strong> Both types of markets are natural and offer opportunities.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →"&gt;</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_30.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 31 -------- -->
+<div class="slide" id="s31" style="background-image:url('dalle_slide_images/slide_31.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Reading a Chart</h2>
+<ul>
+<li><strong>Trend Identification:</strong> Spot upward, downward, and sideways trends using price charts.</li>
+<li><strong>Tools:</strong> Moving averages, support/resistance lines, and volume indicators.</li>
+<li><strong>Timing:</strong> Use trends to guide entry and exit decisions.</li>
+<li><strong>Diagram:</strong> Annotated chart showing different trend types.</li>
+<li><strong>Key Point:</strong> Chart reading is a valuable skill for all investors.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →"&gt;</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_31.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 32 -------- -->
+<div class="slide" id="s32" style="background-image:url('dalle_slide_images/slide_32.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Trend Analysis</h2>
+<ul>
+<li><strong>Bull Trends:</strong> Rising prices can lead to overconfidence and risky bets.</li>
+<li><strong>Bear Trends:</strong> Falling prices may offer bargains, but also risk catching a falling knife.</li>
+<li><strong>Analysis:</strong> Look for confirmation before acting on trends.</li>
+<li><strong>Diagram:</strong> Chart with trend lines and entry/exit points marked.</li>
+<li><strong>Key Point:</strong> Understanding trends helps avoid emotional mistakes.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →"&gt;</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_32.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 33 -------- -->
+<div class="slide" id="s33" style="background-image:url('dalle_slide_images/slide_33.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Long-Term Strategy</h2>
+<ul>
+<li><strong>Buy and Hold:</strong> Invest in strong companies and keep positions for years.</li>
+<li><strong>Ignore Noise:</strong> Focus on fundamentals, not daily price swings.</li>
+<li><strong>Benefits:</strong> Lower taxes, fewer commissions, compounding returns.</li>
+<li><strong>Diagram:</strong> Growth chart showing value over time with less trading.</li>
+<li><strong>Key Point:</strong> Patience and discipline are rewarded in the long run.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →"&gt;</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_33.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 34 -------- -->
+<div class="slide" id="s34" style="background-image:url('dalle_slide_images/slide_34.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Short-Term Trading</h2>
+<ul>
+<li><strong>Active Approach:</strong> Make frequent trades based on news, momentum, and technical signals.</li>
+<li><strong>Potential Rewards:</strong> Quick gains if predictions are correct.</li>
+<li><strong>Risks:</strong> Higher transaction costs, taxes, and losses from bad timing.</li>
+<li><strong>Diagram:</strong> Candlestick chart with rapid price movements.</li>
+<li><strong>Key Point:</strong> Short-term trading is challenging and requires discipline.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →"&gt;</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_34.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 35 -------- -->
+<div class="slide" id="s35" style="background-image:url('dalle_slide_images/slide_35.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Research First</h2>
+<ul>
+<li><strong>Preparation:</strong> Review charts, news, and financial metrics before making any trade.</li>
+<li><strong>Sources:</strong> Use MarketSim, financial news sites, and company reports.</li>
+<li><strong>Checklist:</strong>
+<ul>
+<li>Company fundamentals</li>
+<li>Recent news</li>
+<li>Technical indicators</li>
+</ul>
+</li>
+<li><strong>Diagram:</strong> Flowchart of research steps before trading.</li>
+<li><strong>Key Point:</strong> Informed decisions lead to better outcomes.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →"&gt;</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_35.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 36 -------- -->
+<div class="slide" id="s36" style="background-image:url('dalle_slide_images/slide_36.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Trade Planning Sheet</h2>
+<ul>
+<li><strong>Plan Ahead:</strong> Write down your reason for the trade, target price, and risk tolerance.</li>
+<li><strong>Details:</strong> Record ticker, number of shares, and stop-loss level.</li>
+<li><strong>Review:</strong> Double-check your plan before placing the order.</li>
+<li><strong>Diagram:</strong> Example planning sheet with fields for each detail.</li>
+<li><strong>Key Point:</strong> Planning reduces emotional mistakes and improves discipline.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →"&gt;</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_36.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 37 -------- -->
+<div class="slide" id="s37" style="background-image:url('dalle_slide_images/slide_37.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Executing a Trade</h2>
+<ul>
+<li><strong>Steps:</strong>
+<ul>
+<li>Enter ticker symbol and number of shares</li>
+<li>Review estimated cost and available cash</li>
+<li>Confirm the order</li>
+<li>Check your portfolio for the new position</li>
+</ul>
+</li>
+<li><strong>Verification:</strong> Ensure order was filled at expected price.</li>
+<li><strong>Diagram:</strong> Screenshot of order entry form.</li>
+<li><strong>Key Point:</strong> Careful order entry prevents costly mistakes.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →"&gt;</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_37.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 38 -------- -->
+<div class="slide" id="s38" style="background-image:url('dalle_slide_images/slide_38.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Good Reason or Hearsay?</h2>
+<ul>
+<li><strong>Fact-Checking:</strong> Only trade based on reliable, verified information.</li>
+<li><strong>Risks:</strong> Acting on rumors or FOMO (fear of missing out) can lead to losses.</li>
+<li><strong>Checklist:</strong> Confirm news from multiple sources before trading.</li>
+<li><strong>Diagram:</strong> Decision tree: rumor vs. verified info.</li>
+<li><strong>Key Point:</strong> Evidence-based trading produces more consistent results.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →"&gt;</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_38.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 39 -------- -->
+<div class="slide" id="s39" style="background-image:url('dalle_slide_images/slide_39.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Answer</h2>
+<ul>
+<li><strong>Data-Driven:</strong> Use facts, analysis, and research—not just intuition.</li>
+<li><strong>Benefits:</strong> Higher probability of success and more stable returns.</li>
+<li><strong>Diagram:</strong> Chart comparing gut-based and data-based results.</li>
+<li><strong>Key Point:</strong> Let evidence guide your investment decisions.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →"&gt;</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_39.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 40 -------- -->
+<div class="slide" id="s40" style="background-image:url('dalle_slide_images/slide_40.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Key Terms Recap</h2>
+<ul>
+<li><strong>Stock:</strong> Ownership in a company</li>
+<li><strong>Bond:</strong> Loan to a company or government</li>
+<li><strong>Dividend:</strong> Profit sharing with shareholders</li>
+<li><strong>Ticker:</strong> Unique code for a stock</li>
+<li><strong>Portfolio:</strong> Collection of investments</li>
+<li><strong>Bull/Bear:</strong> Market trends (up/down)</li>
+<li><strong>Risk/Return:</strong> Trade-off between potential gain and loss</li>
+<li><strong>Diversification:</strong> Spreading risk across assets</li>
+<li><strong>Diagram:</strong> Glossary table with icons for each term.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →"&gt;</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_40.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 41 -------- -->
+<div class="slide" id="s41" style="background-image:url('dalle_slide_images/slide_41.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Concept Toolkit</h2>
+<ul>
+<li><strong>Supply &amp; Demand:</strong> Understand how prices are set.</li>
+<li><strong>Risk-Return Curve:</strong> Choose investments that fit your comfort level.</li>
+<li><strong>Diversification:</strong> Reduce risk by spreading investments.</li>
+<li><strong>Strategy:</strong> Develop a plan before trading.</li>
+<li><strong>Diagram:</strong> Toolkit graphic with icons for each concept.</li>
+<li><strong>Key Point:</strong> Use these tools for every investment decision.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →"&gt;</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_41.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 42 -------- -->
+<div class="slide" id="s42" style="background-image:url('dalle_slide_images/slide_42.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Reflective Journal</h2>
+<ul>
+<li><strong>Purpose of Trade:</strong> Note your motivation and goals for each trade you make.</li>
+<li><strong>Market Context:</strong> Record market conditions and news influencing your decisions.</li>
+<li><strong>Trade Execution:</strong> Log entry/exit points, position size, and timing.</li>
+<li><strong>Outcomes:</strong> Track gains, losses, and unexpected events during the trade.</li>
+<li><strong>Lessons Learned:</strong> Reflect on what worked, what didn't, and why.</li>
+<li><strong>Strategy Adjustments:</strong> Identify improvements for future trades based on your reflections.</li>
+<li><strong>Metacognitive Practice:</strong> Regular journaling helps develop discipline, self-awareness, and mastery in trading.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →"&gt;</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_42.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 43 -------- -->
+<div class="slide" id="s43" style="background-image:url('dalle_slide_images/slide_43.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Simulation Event</h2>
+<ul>
+<li><strong>Interest Rate Shock:</strong> Observe how a sudden change in interest rates impacts different market sectors.</li>
+<li><strong>Sector Reactions:</strong>
+<ul>
+<li>Financials: Banks and lenders may benefit from rising rates.</li>
+<li>Utilities/Real Estate: Often negatively affected due to higher borrowing costs.</li>
+<li>Technology/Consumer Goods: Impact varies based on debt levels and growth outlook.</li>
+</ul>
+</li>
+<li><strong>Trading Strategy:</strong> Adjust positions based on sector performance and risk assessment.</li>
+<li><strong>Key Takeaways:</strong> Recognize the interconnectedness of economic events and portfolio management.</li>
+<li><strong>Diagram:</strong> Draw a flowchart linking interest rate change → sector impact → portfolio adjustment.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →"&gt;</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_43.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 44 -------- -->
+<div class="slide" id="s44" style="background-image:url('dalle_slide_images/slide_44.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Monitor Your Portfolio</h2>
+<ul>
+<li><strong>Daily Review Checklist:</strong>
+<ul>
+<li>Track gains and losses for each holding.</li>
+<li>Monitor overall portfolio value and cash balance.</li>
+<li>Check for proper diversification across sectors and asset classes.</li>
+</ul>
+</li>
+<li><strong>Risk Management:</strong> Set stop-losses and review position sizes.</li>
+<li><strong>Avoid Over-Trading:</strong> Trade only when your strategy signals, not out of boredom or emotion.</li>
+<li><strong>Performance Analysis:</strong> Compare results to benchmarks and your goals.</li>
+<li><strong>Diagram:</strong> Use a pie chart to visualize portfolio allocation and a line chart for daily balance trends.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →"&gt;</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_44.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 45 -------- -->
+<div class="slide" id="s45" style="background-image:url('dalle_slide_images/slide_45.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Class Discussion</h2>
+<ul>
+<li><strong>Rationale Sharing:</strong> Present your trade decisions and the reasoning behind them.</li>
+<li><strong>Outcome Review:</strong> Discuss what happened and compare to expectations.</li>
+<li><strong>Peer Feedback:</strong> Listen to classmates' perspectives and alternative strategies.</li>
+<li><strong>Collaborative Learning:</strong> Identify patterns, mistakes, and successes as a group.</li>
+<li><strong>Growth Mindset:</strong> Use constructive criticism to improve future performance.</li>
+<li><strong>Diagram:</strong> Consider using a mind map to capture diverse strategies and lessons learned during the discussion.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →"&gt;</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_45.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 46 -------- -->
+<div class="slide" id="s46" style="background-image:url('dalle_slide_images/slide_46.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Ethical Investing</h2>
+<ul>
+<li><strong>Legal Standards:</strong> Insider trading is illegal and undermines market trust.</li>
+<li><strong>Transparency:</strong> Honest reporting and disclosure are essential for fair markets.</li>
+<li><strong>Social Responsibility:</strong> Consider environmental, social, and governance (ESG) factors.</li>
+<li><strong>Long-Term Value:</strong> Ethical investing can support sustainable returns and positive change.</li>
+<li><strong>Diagram:</strong> Scales balancing profit and ethics.</li>
+<li><strong>Key Point:</strong> Integrity and fairness benefit everyone in the market.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →"&gt;</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_46.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 47 -------- -->
+<div class="slide" id="s47" style="background-image:url('dalle_slide_images/slide_47.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Summary</h2>
+<ul>
+<li><strong>Knowledge Gained:</strong> You understand stocks, bonds, risk, return, and diversification.</li>
+<li><strong>Skills Practiced:</strong> Simulated trading, research, and portfolio management.</li>
+<li><strong>Decision Tools:</strong> Use your toolkit for real and virtual investing.</li>
+<li><strong>Next Steps:</strong> Apply what you’ve learned in MarketSim and beyond.</li>
+<li><strong>Diagram:</strong> Flowchart summarizing the learning journey.</li>
+<li><strong>Key Point:</strong> You are ready to confidently navigate financial markets.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →"&gt;</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_47.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 48 -------- -->
+<div class="slide" id="s48" style="background-image:url('dalle_slide_images/slide_48.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Your Action Plan</h2>
+<ul>
+<li><strong>Set Goals:</strong> Define your growth targets, risk tolerance, and diversification objectives.</li>
+<li><strong>Plan:</strong> Develop a clear investment plan with timelines and benchmarks.</li>
+<li><strong>Execute:</strong> Take action in MarketSim and track your progress.</li>
+<li><strong>Review:</strong> Regularly assess your results and adjust as needed.</li>
+<li><strong>Diagram:</strong> Checklist or roadmap graphic for your action plan.</li>
+<li><strong>Key Point:</strong> Success comes from planning, action, and reflection.</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →"&gt;</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_48.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 49 -------- -->
+<div class="slide" id="s49" style="background-image:url('dalle_slide_images/slide_49.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>First Trades Today</h2>
+<ul>
+<li><strong>Get Started:</strong> Log in to MarketSim and access your virtual portfolio.</li>
+<li><strong>Research:</strong> Select two companies to investigate using charts and news.</li>
+<li><strong>Plan:</strong> Complete trade planning sheets for each company.</li>
+<li><strong>Trade:</strong> Place your first buy orders and monitor execution.</li>
+<li><strong>Diagram:</strong> Checklist with steps for your first trades.</li>
+<li><strong>Key Point:</strong> The best way to learn is by doing—start now!</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →"&gt;</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_49.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<!-- -------- Slide 50 -------- -->
+<div class="slide" id="s50" style="background-image:url('dalle_slide_images/slide_50.png');"><div class="slide-flex" style="display:flex; align-items: flex-start; justify-content: space-between; gap:32px;"><div class="slide-content" style="flex:2; min-width:0;">
+<h2>Ready to Launch!</h2>
+<ul>
+<li><strong>Congratulations!</strong> You’ve completed the introduction to financial markets.</li>
+<li><strong>Next Steps:</strong> Continue learning, practicing, and refining your skills in MarketSim.</li>
+<li><strong>Iterate:</strong> Learn from successes and mistakes—every trade is a lesson.</li>
+<li><strong>Confidence:</strong> Build financial knowledge for a lifetime of smart decisions.</li>
+<li><strong>Diagram:</strong> Rocket or upward arrow symbolizing growth and achievement.</li>
+<li><strong>Key Point:</strong> Stay curious, keep learning, and enjoy your financial journey!</li>
+</ul>
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button disabled="">End 🎉</button></div>
+</div><img class="slide-image" src="dalle_slide_images/slide_50.png" style="max-width:340px; max-height:440px; object-fit:contain; flex:1; border-radius:12px; box-shadow:0 0 10px #bbb; background:#fff; margin-left:8px;"/></div></div>
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  let idx=0;
+  slides.forEach((s,i)=>{if(i!==0)s.style.display='none';});
+  function show(n){
+    if(n<0||n>=slides.length)return;
+    slides[idx].style.display='none';
+    slides[n].style.display='flex';
+    idx=n;
+  }
+  function nextSlide(){show(idx+1);}
+  function prevSlide(){show(idx-1);}
+</script>
+</body>
+</html>
